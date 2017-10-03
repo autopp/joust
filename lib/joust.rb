@@ -1,0 +1,2 @@
+module Joust
+end
