@@ -17,7 +17,7 @@ group :test, :development do
 end
 
 group :test do
-  gem 'minitest'
+  gem 'rspec', '~> 3.6.0'
   gem 'capybara'
 end
 
