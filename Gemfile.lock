@@ -104,6 +104,7 @@ GEM
     mime-types-data (3.2016.0521)
     mini_mime (0.1.4)
     mini_portile2 (2.3.0)
+    mysql2 (0.4.9)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
     pry (0.11.1)
@@ -169,6 +170,7 @@ DEPENDENCIES
   dotenv (~> 2.0)
   hanami (~> 1.0)
   hanami-model (~> 1.0)
+  mysql2
   pry
   rake
   rspec (~> 3.6.0)

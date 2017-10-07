@@ -26,4 +26,5 @@ end
 
 group :production do
   # gem 'puma'
+  gem 'mysql2'
 end
