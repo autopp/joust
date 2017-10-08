@@ -13,6 +13,7 @@ group :development do
   # See: http://hanamirb.org/guides/projects/code-reloading
   gem 'shotgun'
   gem 'pry'
+  gem 'rubocop'
 end
 
 group :test, :development do
