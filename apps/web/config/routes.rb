@@ -3,5 +3,6 @@
 #
 # Example:
 # get '/hello', to: ->(env) { [200, {}, ['Hello from Hanami!']] }
+get '/tournament', to: 'tournament#index'
 
 root to: 'tournament#index'
