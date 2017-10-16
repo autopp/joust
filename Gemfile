@@ -8,6 +8,8 @@ gem 'hanami-model', '~> 1.0'
 
 gem 'sqlite3'
 
+gem 'hanami-bootstrap', '~> 0.4.0'
+
 group :development do
   # Code reloading
   # See: http://hanamirb.org/guides/projects/code-reloading
