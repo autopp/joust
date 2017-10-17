@@ -9,6 +9,7 @@ gem 'hanami-model', '~> 1.0'
 gem 'sqlite3'
 
 gem 'hanami-bootstrap', '~> 0.4.0'
+gem 'sass'
 
 group :development do
   # Code reloading
