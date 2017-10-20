@@ -1,3 +1,4 @@
+require_relative '../views_helper.rb'
 require_relative '../../../../apps/web/views/tournament/index'
 
 RSpec.describe Web::Views::Tournament::Index do
@@ -6,7 +7,5 @@ RSpec.describe Web::Views::Tournament::Index do
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
 
-  it 'exposes #foo' do
-    expect(view.foo).to eq exposures.fetch(:foo)
-  end
+  it_behaves_like 'common view', 'List of tournaments'
 end
