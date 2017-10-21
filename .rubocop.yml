@@ -20,6 +20,9 @@ Style/AsciiComments:
 Style/BracesAroundHashParameters:
   Enabled: false
 
+Style/ClassAndModuleChildren:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 
