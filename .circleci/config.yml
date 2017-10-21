@@ -50,6 +50,9 @@ jobs:
                             --out /tmp/test-results/rspec.xml \
                             --format documentation
 
+      # run rubocop
+      - run: bundle exec rubocop -D
+
       # collect reports
       - store_test_results:
           path: /tmp/test-results
