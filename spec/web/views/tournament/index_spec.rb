@@ -7,5 +7,5 @@ RSpec.describe Web::Views::Tournament::Index do
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
 
-  it_behaves_like 'common view', 'List of tournaments'
+  it_behaves_like 'common view', title: 'List of tournaments', back_path: Web.routes.path(:root)
 end

@@ -5,5 +5,9 @@ module Web::Views::Tournament
     def title
       'List of tournaments'
     end
+
+    def back_path
+      Web.routes.path(:root)
+    end
   end
 end
