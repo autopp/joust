@@ -9,6 +9,7 @@
   <body>
     <%= render partial: 'shared/header' %>
     <div class="container">
+      <%= link_to('Back', back_path) %>
       <h1><%= title %></h1>
       <%= yield %>
     </div>
