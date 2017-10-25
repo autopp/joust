@@ -8,4 +8,9 @@ RSpec.describe Web::Controllers::Tournament::Index do
     response = action.call(params)
     expect(response[0]).to eq 200
   end
+
+  it 'exposes tournaments' do
+    action.call(params)
+    expect(action.tournaments).to eq([])
+  end
 end
