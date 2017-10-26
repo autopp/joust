@@ -1,8 +1,11 @@
 require_relative '../../../../apps/web/controllers/tournament/index'
 
 RSpec.describe Web::Controllers::Tournament::Index do
-  let(:action) { described_class.new }
+  let(:action) { described_class.new(repo: repo) }
   let(:params) { Hash[] }
+
+  let(:tournament) { Tournament.new(id: 1, name: 'My Tournament') }
+  let(:repo) { double('repo', all: [tournament]) }
 
   it 'is successful' do
     response = action.call(params)
@@ -11,6 +14,6 @@ RSpec.describe Web::Controllers::Tournament::Index do
 
   it 'exposes tournaments' do
     action.call(params)
-    expect(action.tournaments).to eq([])
+    expect(action.tournaments).to eq([tournament])
   end
 end
