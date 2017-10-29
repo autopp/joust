@@ -6,5 +6,5 @@ RSpec.describe Web::Views::Tournament::Show do
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
 
-  it_behaves_like 'common view', title: 'My Tournament', back_path: Web.routes.path(:root)
+  it_behaves_like 'common view', title: 'My Tournament', back_path: Web.routes.path(:tournaments)
 end
