@@ -3,7 +3,7 @@
 #
 # Example:
 # get '/hello', to: ->(env) { [200, {}, ['Hello from Hanami!']] }
-get '/tournament/:id', to: 'tournament#show', as: :tournaments
-get '/tournament', to: 'tournament#index', as: :tournament
+get '/tournament/:id', to: 'tournament#show', as: :tournament
+get '/tournaments', to: 'tournament#index', as: :tournaments
 
 root to: 'tournament#index'
