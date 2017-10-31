@@ -14,6 +14,6 @@ RSpec.describe Web::Controllers::Tournament::Index do
 
   it 'exposes tournaments' do
     action.call(params)
-    expect(action.tournaments).to eq([tournament])
+    expect(action.exposures).to include(tournaments: [tournament])
   end
 end
