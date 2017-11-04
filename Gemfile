@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 ruby '~> 2.4.2'
 
 gem 'rake'
-gem 'hanami',       '~> 1.0'
-gem 'hanami-model', '~> 1.0'
+gem 'hanami',       '~> 1.1'
+gem 'hanami-model', '~> 1.1'
 
 gem 'sqlite3'
 
