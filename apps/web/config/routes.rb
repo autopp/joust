@@ -8,3 +8,4 @@ get '/tournaments/new', to: 'tournament#new', as: :new_tournament
 get '/tournaments/:id', to: 'tournament#show', as: :tournament
 
 root to: 'tournament#index'
+post '/tournament', to: 'tournament#create'
