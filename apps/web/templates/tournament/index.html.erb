@@ -1,5 +1,5 @@
 <div class="center">
-  <%= link_to 'New Tournament', '/', class: 'btn btn-primary' %>
+  <%= link_to 'New Tournament', Web.routes.path(:new_tournament), class: 'btn btn-primary' %>
   <ul class="center tournament-list">
     <% tournaments.each do |t| %>
     <li><%= link_to t.name, Web.routes.path(:tournament, id: t.id) %></li>
