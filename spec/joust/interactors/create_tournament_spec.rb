@@ -31,13 +31,30 @@ describe Interactors::CreateTournament do
     end
   end
 
-  context 'when players is empty' do
+  shared_context 'failure by players count' do |players_count|
     let(:params) do
-      { name: name, players: "\n\n\n", total_vp_used: '0', rank_history_used: '1' }
+      players = players_count.times.map { |n| "player#{n}" }.join("\n")
+      { name: name, players: players, total_vp_used: '0', rank_history_used: '1' }
     end
 
     before { expect(repo).not_to receive(:create_with_players) }
 
     it { is_expected.not_to be_a_success }
+  end
+
+  context 'when count of players is 0' do
+    it_behaves_like 'failure by players count', 0
+  end
+
+  context 'when count of players is 1' do
+    it_behaves_like 'failure by players count', 1
+  end
+
+  context 'when count of players is 2' do
+    it_behaves_like 'failure by players count', 2
+  end
+
+  context 'when count of players is 5' do
+    it_behaves_like 'failure by players count', 5
   end
 end
