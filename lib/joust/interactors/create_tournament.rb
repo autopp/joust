@@ -20,7 +20,7 @@ module Interactors
     private
 
     def valid?
-      !@player_names.empty?
+      ![0, 1, 2, 5].member?(@player_names.size)
     end
   end
 end
