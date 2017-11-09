@@ -33,7 +33,7 @@ describe Interactors::CreateTournament do
 
   shared_context 'failure by players count' do |players_count|
     let(:params) do
-      players = players_count.times.map { |n| "player#{n}" }.join("\n")
+      players = Array.new(players_count) { |n| "player#{n}" }.join("\n")
       { name: name, players: players, total_vp_used: '0', rank_history_used: '1' }
     end
 
