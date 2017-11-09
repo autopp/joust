@@ -2,10 +2,9 @@ describe Interactors::CreateTournament do
   let(:interactor) { described_class.new(params, repo: repo) }
   let(:repo) { double('TournamentRepository') }
   let(:name) { 'My Tournament' }
+  subject { interactor.call }
 
   context 'when parameters are valid' do
-    subject { interactor.call }
-
     let(:params) do
       {
         name: name, players: "player1\nplayer2\nplayer3\nplayer4\n",
@@ -30,5 +29,15 @@ describe Interactors::CreateTournament do
     it 'exposes the tournament created' do
       expect(subject.tournament).to eq(tournament)
     end
+  end
+
+  context 'when players is empty' do
+    let(:params) do
+      { name: name, players: "\n\n\n", total_vp_used: '0', rank_history_used: '1' }
+    end
+
+    before { expect(repo).not_to receive(:create_with_players) }
+
+    it { is_expected.not_to be_a_success }
   end
 end

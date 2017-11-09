@@ -16,5 +16,11 @@ module Interactors
       args = @params.to_h.merge!(player_names: @player_names)
       @tournament = @repo.create_with_players(args)
     end
+
+    private
+
+    def valid?
+      !@player_names.empty?
+    end
   end
 end
