@@ -26,11 +26,11 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
 
-body, textarea {
+body, textarea, input {
   font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
 
-textarea {
+textarea, input {
   font-size: 1.1em;
 }
 
@@ -95,4 +95,9 @@ p {
   li {
     padding-top: 5px;
   }
+}
+
+/* create tournament */
+.tournament-name-input {
+  padding-bottom: 10px;
 }

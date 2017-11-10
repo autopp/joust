@@ -13,6 +13,12 @@ module Web::Views::Tournament
     def form
       form_for :tournament, '/tournaments', class: 'center-block' do
         div class: 'row' do
+          div class: "col-md-4 col-md-offset-4 center tournament-name-input" do
+            text_field :name, size: 25, placeholder: "input name"
+          end
+        end
+
+        div class: 'row' do
           div class: "col-md-4 col-md-offset-4 center" do
             text_area :players, '', rows: 25, cols: 20, placeholder: "input names per line"
           end
