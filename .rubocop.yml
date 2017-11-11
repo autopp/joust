@@ -35,9 +35,12 @@ Metrics/ParameterLists:
 
 Metrics/MethodLength:
   Max: 15
+  Exclude:
+    - apps/**/views/**/*.rb
 
 Metrics/BlockLength:
   Exclude:
+    - apps/**/views/**/*.rb
     - spec/**/*.rb
 
 Metrics/AbcSize:
