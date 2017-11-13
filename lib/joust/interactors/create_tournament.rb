@@ -20,7 +20,16 @@ module Interactors
     private
 
     def valid?
-      ![0, 1, 2, 5].member?(@player_names.size)
+      Validator.new(@params.merge(player_names: @player_names)).validate.success?
+    end
+
+    class Validator
+      include Hanami::Validations
+
+      validations do
+        required(:player_names) { size?(6..Float::INFINITY) | size?(3..4) }
+        required(:name) { str? & filled? }
+      end
     end
   end
 end

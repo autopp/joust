@@ -57,4 +57,15 @@ describe Interactors::CreateTournament do
   context 'when count of players is 5' do
     it_behaves_like 'failure by players count', 5
   end
+
+  context 'name is empty' do
+    let(:params) do
+      {
+        name: '', players: "player1\nplayer2\nplayer3\nplayer4\n",
+        total_vp_used: '0', rank_history_used: '1'
+      }
+    end
+
+    it { is_expected.not_to be_a_success }
+  end
 end
