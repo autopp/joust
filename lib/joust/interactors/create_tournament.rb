@@ -20,7 +20,13 @@ module Interactors
     private
 
     def valid?
-      Validator.new(@params.merge(player_names: @player_names)).validate.success?
+      result = Validator.new(@params.merge(player_names: @player_names)).validate
+      if result.success?
+        true
+      else
+        error(result.messages)
+        false
+      end
     end
 
     class Validator

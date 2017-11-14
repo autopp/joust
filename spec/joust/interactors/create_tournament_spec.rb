@@ -67,5 +67,9 @@ describe Interactors::CreateTournament do
     end
 
     it { is_expected.not_to be_a_success }
+
+    it 'generates errors' do
+      expect(subject.errors).not_to be_empty
+    end
   end
 end
