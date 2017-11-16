@@ -27,6 +27,7 @@ group :test do
   gem 'rspec', '~> 3.6.0'
   gem 'capybara'
   gem 'rspec_junit_formatter'
+  gem 'database_cleaner'
 end
 
 group :production do
