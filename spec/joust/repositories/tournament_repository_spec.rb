@@ -5,14 +5,17 @@ describe TournamentRepository do
     subject do
       repo.create_with_players(
         name: 'My Tournament', total_vp_used: true, rank_history_used: true,
-        player_names: %[player1, player2, player3, player4]
+        player_names: %w[player1 player2 player3 player4]
       )
     end
 
     it 'returns created tournament players' do
+      pending
       expected = {
         name: 'My Tournament', total_vp_used: true, rank_history_used: true,
-        players: []
+        players: [
+          { name: 'player1' }, { name: 'player2' }, { name: 'player3' }, { name: 'player4' }
+        ]
       }
       expect(subject.to_h).to include(expected)
     end
