@@ -11,13 +11,17 @@ describe Interactors::CreateTournament do
 
   context 'when parameters are valid' do
     let(:tournament) do
-      Tournament.new(id: 1, name: name)
+      players = (1..4).map { |i| Player.new(id: i, name: "player#{i}", tournament_id: 1) }
+      Tournament.new(id: 1, name: name, players: players)
     end
 
     before do
+      pending
       args = including(
-        name: name, player_names: %w[player1 player2 player3 player4],
-        total_vp_used: '0', rank_history_used: '1'
+        name: name, total_vp_used: '0', rank_history_used: '1',
+        players: [
+          { name: 'player1' }, { name: 'player2' }, { name: 'player3' }, { name: 'player4' }
+        ]
       )
       expect(repo).to receive(:create_with_players).with(args).once.and_return(tournament)
     end
