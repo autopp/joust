@@ -14,7 +14,6 @@ describe TournamentRepository do
     end
 
     it 'returns created tournament with players' do
-      pending
       expected = {
         name: 'My Tournament', total_vp_used: true, rank_history_used: true, finished_count: 0
       }
