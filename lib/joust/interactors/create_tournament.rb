@@ -13,7 +13,7 @@ module Interactors
     end
 
     def call
-      args = @params.to_h.merge!(player_names: @player_names)
+      args = @params.to_h.merge!(players: @player_names.map { |n| { name: n } })
       @tournament = @repo.create_with_players(args)
     end
 

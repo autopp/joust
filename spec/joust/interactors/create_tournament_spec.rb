@@ -16,7 +16,6 @@ describe Interactors::CreateTournament do
     end
 
     before do
-      pending
       args = including(
         name: name, total_vp_used: '0', rank_history_used: '1',
         players: [
