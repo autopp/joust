@@ -32,7 +32,10 @@ RSpec.describe Web::Controllers::Tournament::Create, type: :action do
       expect(response[1]).to include('Location' => '/tournaments/1')
     end
 
-    it 'exposes the created tournament'
+    it 'exposes the created tournament' do
+      action.call(params)
+      expect(action.exposures).to include(tournament: tournament)
+    end
   end
 
   context 'when parameters are invalid' do

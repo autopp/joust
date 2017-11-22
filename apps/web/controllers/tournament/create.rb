@@ -2,6 +2,8 @@ module Web::Controllers::Tournament
   class Create
     include Web::Action
 
+    expose :tournament
+
     def initialize(interactor: Interactors::Tournament.new)
       @interactor = interactor
     end
