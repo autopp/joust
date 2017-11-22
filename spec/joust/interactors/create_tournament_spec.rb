@@ -1,5 +1,5 @@
 describe Interactors::CreateTournament do
-  let(:interactor) { described_class.new(params, repo: repo) }
+  let(:interactor) { described_class.new(repo: repo) }
   let(:repo) { double('TournamentRepository') }
   let(:name) { 'My Tournament' }
   let(:players_count) { 4 }
@@ -7,7 +7,7 @@ describe Interactors::CreateTournament do
     players = (1..players_count).map { |n| "player#{n}" }.join("\n")
     { name: name, players: players, total_vp_used: '0', rank_history_used: '1' }
   end
-  subject { interactor.call }
+  subject { interactor.call(params) }
 
   context 'when parameters are valid' do
     let(:tournament) do
