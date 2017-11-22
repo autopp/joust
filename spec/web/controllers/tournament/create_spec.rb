@@ -18,7 +18,12 @@ RSpec.describe Web::Controllers::Tournament::Create, type: :action do
     end
 
     before do
-      allow(interactor).to receive(:call).with(params).and_return(tournament)
+      result = double('result')
+      allow(result).to receive(:succuess?).and_return(true)
+      allow(result).to receive(:tournament).and_return(tournament)
+
+      expected_arg = satisfying { |o| o.to_h == params }
+      allow(interactor).to receive(:call).with(expected_arg).and_return(result)
     end
 
     it 'redirects to "/tournaments/1"' do
