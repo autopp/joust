@@ -8,7 +8,6 @@ RSpec.describe Web::Controllers::Tournament::Create, type: :action do
   end
 
   context 'when parameters are valid' do
-    let(:name) { 'My Tournament' }
     let(:players) { "player2\nplayer1\nplayer3\nplayer4\n" }
     let(:tournament) do
       Tournament.new(
@@ -39,6 +38,28 @@ RSpec.describe Web::Controllers::Tournament::Create, type: :action do
   end
 
   context 'when parameters are invalid' do
-    it 'is failure'
+    let(:players) { '' }
+    let(:errors) { ['parameter "players" error'] }
+
+    before do
+      result = double('result')
+      allow(result).to receive(:succuess?).and_return(false)
+      allow(result).to receive(:errors).and_return(errors)
+
+      expected_arg = satisfying { |o| o.to_h == params }
+      allow(interactor).to receive(:call).with(expected_arg).and_return(result)
+    end
+
+    it 'is failure' do
+      pending
+      response = action.call(params)
+      expect(response[0]).to eq(400)
+    end
+
+    it 'exposes error messages' do
+      pending
+      action.call(params)
+      expect(action.exposures).to include(errors: errors)
+    end
   end
 end
