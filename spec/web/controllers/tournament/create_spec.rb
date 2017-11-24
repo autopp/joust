@@ -56,7 +56,6 @@ RSpec.describe Web::Controllers::Tournament::Create, type: :action do
     end
 
     it 'exposes error messages' do
-      pending
       action.call(params)
       expect(action.exposures).to include(errors: errors)
     end

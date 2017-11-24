@@ -3,6 +3,7 @@ module Web::Controllers::Tournament
     include Web::Action
 
     expose :tournament
+    expose :errors
 
     def initialize(interactor: Interactors::Tournament.new)
       @interactor = interactor
@@ -16,6 +17,7 @@ module Web::Controllers::Tournament
         redirect_to routes.path(:tournament, id: @tournament.id)
       else
         self.status = 400
+        @errors = result.errors
       end
     end
   end
