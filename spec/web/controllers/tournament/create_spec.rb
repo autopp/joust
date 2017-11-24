@@ -51,7 +51,6 @@ RSpec.describe Web::Controllers::Tournament::Create, type: :action do
     end
 
     it 'is failure' do
-      pending
       response = action.call(params)
       expect(response[0]).to eq(400)
     end

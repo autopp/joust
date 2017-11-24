@@ -10,8 +10,13 @@ module Web::Controllers::Tournament
 
     def call(params)
       result = @interactor.call(params)
-      @tournament = result.tournament
-      redirect_to routes.path(:tournament, id: @tournament.id)
+
+      if result.succuess?
+        @tournament = result.tournament
+        redirect_to routes.path(:tournament, id: @tournament.id)
+      else
+        self.status = 400
+      end
     end
   end
 end
