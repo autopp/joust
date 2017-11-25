@@ -18,7 +18,7 @@ RSpec.describe Web::Controllers::Tournament::Create, type: :action do
 
     before do
       result = double('result')
-      allow(result).to receive(:succuess?).and_return(true)
+      allow(result).to receive(:success?).and_return(true)
       allow(result).to receive(:tournament).and_return(tournament)
 
       expected_arg = satisfying { |o| o.to_h == params }
@@ -43,7 +43,7 @@ RSpec.describe Web::Controllers::Tournament::Create, type: :action do
 
     before do
       result = double('result')
-      allow(result).to receive(:succuess?).and_return(false)
+      allow(result).to receive(:success?).and_return(false)
       allow(result).to receive(:errors).and_return(errors)
 
       expected_arg = satisfying { |o| o.to_h == params }

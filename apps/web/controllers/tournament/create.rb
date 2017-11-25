@@ -5,14 +5,14 @@ module Web::Controllers::Tournament
     expose :tournament
     expose :errors
 
-    def initialize(interactor: Interactors::Tournament.new)
+    def initialize(interactor: Interactors::CreateTournament.new)
       @interactor = interactor
     end
 
     def call(params)
       result = @interactor.call(params)
 
-      if result.succuess?
+      if result.success?
         @tournament = result.tournament
         redirect_to routes.path(:tournament, id: @tournament.id)
       else
