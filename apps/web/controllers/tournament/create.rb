@@ -3,7 +3,6 @@ module Web::Controllers::Tournament
     include Web::Action
 
     expose :tournament
-    expose :errors
 
     def initialize(interactor: Interactors::CreateTournament.new)
       @interactor = interactor

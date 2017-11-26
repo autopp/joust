@@ -261,6 +261,8 @@ module Web
       controller.prepare do
         # include MyAuthentication # included in all the actions
         # before :authenticate!    # run an authentication before callback
+        require_relative './controllers/errors'
+        include Web::Controllers::Errors
       end
 
       # Configure the code that will yield each time Web::View is included
