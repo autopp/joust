@@ -11,15 +11,16 @@ module Interactors
     end
 
     def call(params)
-      args = params.to_h.merge!(players: @player_names.map { |n| { name: n } })
+      args = params[:tournament].to_h.merge!(players: @player_names.map { |n| { name: n } })
       @tournament = @repo.create_with_players(args)
     end
 
     private
 
     def valid?(params)
-      @player_names = params[:players].to_s.each_line.map(&:chomp).reject(&:empty?)
-      result = Validator.new(params.merge(player_names: @player_names)).validate
+      input = params[:tournament]
+      @player_names = input[:players].to_s.each_line.map(&:chomp).reject(&:empty?)
+      result = Validator.new(input.merge(player_names: @player_names)).validate
       if result.success?
         true
       else

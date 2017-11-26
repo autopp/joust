@@ -5,7 +5,7 @@ describe Interactors::CreateTournament do
   let(:players_count) { 4 }
   let(:params) do
     players = (1..players_count).map { |n| "player#{n}" }.join("\n")
-    { name: name, players: players, total_vp_used: '0', rank_history_used: '1' }
+    { tournament: { name: name, players: players, total_vp_used: '0', rank_history_used: '1' } }
   end
   subject { interactor.call(params) }
 
