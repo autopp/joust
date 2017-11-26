@@ -20,11 +20,13 @@ module Interactors
     def valid?(params)
       input = params[:tournament]
       @player_names = input[:players].to_s.each_line.map(&:chomp).reject(&:empty?)
-      result = Validator.new(input.merge(player_names: @player_names)).validate
+      result = Validator.new(input.merge(players: @player_names)).validate
       if result.success?
         true
       else
-        error(result.messages)
+        result.messages.each do |k, msg|
+          error("#{k}: #{msg}")
+        end
         false
       end
     end
@@ -33,7 +35,7 @@ module Interactors
       include Hanami::Validations
 
       validations do
-        required(:player_names) { size?(6..Float::INFINITY) | size?(3..4) }
+        required(:players) { size?(6..Float::INFINITY) | size?(3..4) }
         required(:name) { str? & filled? }
       end
     end
