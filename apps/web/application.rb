@@ -270,6 +270,9 @@ module Web
       view.prepare do
         include Hanami::Helpers
         include Web::Assets::Helpers
+
+        require_relative './views/error_messages'
+        include Web::Views::ErrorMessages
       end
     end
 
