@@ -9,7 +9,7 @@ module Web::Controllers::Tournament
     end
 
     def call(params)
-      @tournament = @repo.find(id: params[:id])
+      @tournament = @repo.find(params[:id])
     end
   end
 end
