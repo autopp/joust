@@ -4,7 +4,7 @@ RSpec.describe Web::Controllers::Tournament::Create, type: :action do
   let(:name) { 'My Tournament' }
 
   let(:params) do
-    { name: name, players: players, total_vp_used: '0', rank_history_used: '1' }
+    { tournament: { name: name, players: players, total_vp_used: '0', rank_history_used: '1' } }
   end
 
   context 'when parameters are valid' do
