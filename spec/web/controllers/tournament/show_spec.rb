@@ -7,7 +7,7 @@ RSpec.describe Web::Controllers::Tournament::Show do
   let(:tournament) { Tournament.new(id: 1, name: 'My Tournament') }
   let(:repo) do
     repo = double('repo')
-    allow(repo).to receive(:find).with(id: 1).and_return(tournament)
+    allow(repo).to receive(:find).with(1).and_return(tournament)
     repo
   end
 
