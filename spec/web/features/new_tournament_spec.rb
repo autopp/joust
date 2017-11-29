@@ -4,7 +4,7 @@ feature 'Create New Tournament' do
   scenario 'Visit create page' do
     visit Web.routes.path(:root)
     click_on 'New Tournament'
-    expect(current_path).to eq('/tournaments/new')
+    expect(current_path).to eq(Web.routes.path(:new_tournament))
   end
 
   scenario 'Create tournament by valid input' do
