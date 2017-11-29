@@ -55,9 +55,8 @@ jobs:
 
       # run feature tests
       - run:
-          name: run unit tests
+          name: run feature tests
           command: |
-            mkdir /tmp/test-results
             bundle exec rspec --pattern 'spec/*/features/*_spec.rb' \
                             --format progress \
                             --format RspecJunitFormatter \
