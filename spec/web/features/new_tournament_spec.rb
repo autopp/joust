@@ -38,6 +38,7 @@ feature 'Create New Tournament' do
     click_on 'Create'
     expect(current_path).to match(%r{/tournaments/\d+})
     expect(page).not_to have_css('div', id: 'error_explanation')
+    expect(page).to have_selector('h1', text: 'My Tournament')
   end
 
   scenario 'Create tournament by invalid input (invalid number of players)' do
