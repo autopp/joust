@@ -11,7 +11,11 @@ module Interactors
     end
 
     def call(params)
-      args = params[:tournament].to_h.merge!(players: @player_names.map { |n| { name: n } })
+      input = params[:tournament]
+      args = {
+        name: input[:name], players: @player_names.map { |n| { name: n } },
+        total_vp_used: input[:total_vp_used], rank_history_used: input[:rank_history_used]
+      }
       @tournament = @repo.create_with_players(args)
     end
 
