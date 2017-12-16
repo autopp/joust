@@ -24,14 +24,15 @@ module Web::Views
 
         div class: 'row' do
           div class: 'col-md-4 col-md-offset-4 center' do
-            check_box :total_vp_used, checked_value: true, unchecked_value: 'false'
+            check_box :total_vp_used, checked: true, checked_value: true, unchecked_value: 'false'
             label :total_vp_used
           end
         end
 
         div class: 'row' do
           div class: 'col-md-4 col-md-offset-4 center' do
-            check_box :rank_history_used, checked_value: true, unchecked_value: 'false'
+            check_box :rank_history_used,
+                      checked: true, checked_value: true, unchecked_value: 'false'
             label :rank_history_used
           end
         end
