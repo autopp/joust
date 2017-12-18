@@ -16,4 +16,9 @@ describe Web.routes do
   it 'generates "/tournaments/new"' do
     expect(described_class.path(:new_tournament)).to eq('/tournaments/new')
   end
+
+  it 'generates "/tournaments/:id/rounds/:number"' do
+    expected = '/tournaments/1/rounds/2'
+    expect(described_class.path(:round, tournament_id: 1, number: 2)).to eq(expected)
+  end
 end
