@@ -14,7 +14,5 @@ RSpec.describe Web::Views::Round::Show, type: :view do
   let(:rendered)  { view.render }
 
   back_path = Web.routes.path(:tournament, id: 1)
-  it_behaves_like 'common view', title: 'My Tournament: Round 2', back_path: back_path do
-    before { pending }
-  end
+  it_behaves_like 'common view', title: 'My Tournament: Round 2', back_path: back_path
 end
