@@ -15,6 +15,6 @@ RSpec.describe Score, type: :entity do
   describe '#tp' do
     subject { score.tp }
 
-    xit { is_expected.to(Rational(6 + 3, 2)) }
+    it { is_expected.to eq(Rational(6 + 3, 2)) }
   end
 end
