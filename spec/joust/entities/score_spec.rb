@@ -9,7 +9,7 @@ RSpec.describe Score, type: :entity do
   describe '#vp' do
     subject { score.vp }
 
-    xit { is_expected.to eq(30 * Rational(3, 4)) }
+    it { is_expected.to eq(30 * Rational(3, 4)) }
   end
 
   describe '#tp' do
