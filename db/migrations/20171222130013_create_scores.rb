@@ -11,7 +11,7 @@ Hanami::Model.migration do
       column :table_number, Integer, null: false
       column :player_count, Integer, null: false
       column :vp_gained, Integer
-      column :has_extra_turn, TrueClass
+      column :has_extra_turn, TrueClass, null: false, default: false
       column :rank, Integer
       column :same_ranks, Integer
     end
