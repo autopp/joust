@@ -65,99 +65,117 @@ RSpec.configure do |config|
 end
 
 shared_context 'with 7 players', players: 7 do
-  let(:players) do
-    [
-      Player.new(
-        name: 'palyer1',
-        scores: [
-          Score.new(
-            round_id: 1, table_number: 1, player_count: 4,
-            vp_gained: 30, rank: 1, same_ranks: 1
-          ),
-          Score.new( # TODO: FIX
-            round_id: 2, table_number: 1, player_count: 4,
-            vp_gained: 30, rank: 1, same_ranks: 1
-          )
-        ]
-      ),
-      Player.new(
-        name: 'palyer2',
-        scores: [
-          Score.new(
-            round_id: 1, table_number: 1, player_count: 4,
-            vp_gained: 24, rank: 2, same_ranks: 1
-          ),
-          Score.new( # TODO: FIX
-            round_id: 2, table_number: 1, player_count: 4,
-            vp_gained: 30, rank: 1, same_ranks: 1
-          )
-        ]
-      ),
-      Player.new(
-        name: 'palyer3',
-        scores: [
-          Score.new(
-            round_id: 1, table_number: 1, player_count: 4,
-            vp_gained: 18, rank: 3, same_ranks: 1
-          ),
-          Score.new( # TODO: FIX
-            round_id: 2, table_number: 1, player_count: 4,
-            vp_gained: 30, rank: 1, same_ranks: 1
-          )
-        ]
-      ),
-      Player.new(
-        name: 'palyer4',
-        scores: [
-          Score.new(
-            round_id: 1, table_number: 1, player_count: 4,
-            vp_gained: 12, rank: 4, same_ranks: 1
-          ),
-          Score.new( # TODO: FIX
-            round_id: 2, table_number: 1, player_count: 4,
-            vp_gained: 30, rank: 1, same_ranks: 1
-          )
-        ]
-      ),
-      Player.new(
-        name: 'palyer5',
-        scores: [
-          Score.new(
-            round_id: 1, table_number: 2, player_count: 3,
-            vp_gained: 28, rank: 1, same_ranks: 1
-          ),
-          Score.new( # TODO: FIX
-            round_id: 2, table_number: 1, player_count: 4,
-            vp_gained: 30, rank: 1, same_ranks: 1
-          )
-        ]
-      ),
-      Player.new(
-        name: 'palyer6',
-        scores: [
-          Score.new(
-            round_id: 1, table_number: 2, player_count: 3,
-            vp_gained: 24, rank: 3, same_ranks: 1
-          ),
-          Score.new( # TODO: FIX
-            round_id: 2, table_number: 1, player_count: 4,
-            vp_gained: 30, rank: 1, same_ranks: 1
-          )
-        ]
-      ),
-      Player.new(
-        name: 'palyer7',
-        scores: [
-          Score.new(
-            round_id: 1, table_number: 2, player_count: 3,
-            vp_gained: 16, rank: 3, same_ranks: 1
-          ),
-          Score.new( # TODO: FIX
-            round_id: 2, table_number: 1, player_count: 4,
-            vp_gained: 30, rank: 1, same_ranks: 1
-          )
-        ]
-      )
-    ]
+  let(:player1) do
+    Player.new(
+      name: 'palyer1',
+      scores: [
+        Score.new(
+          round_id: 1, table_number: 1, player_count: 4,
+          vp_gained: 30, rank: 1, same_ranks: 1
+        ),
+        Score.new( # TODO: FIX
+          round_id: 2, table_number: 1, player_count: 4,
+          vp_gained: 30, rank: 1, same_ranks: 1
+        )
+      ]
+    )
   end
+
+  let(:player2) do
+    Player.new(
+      name: 'palyer2',
+      scores: [
+        Score.new(
+          round_id: 1, table_number: 1, player_count: 4,
+          vp_gained: 24, rank: 2, same_ranks: 1
+        ),
+        Score.new( # TODO: FIX
+          round_id: 2, table_number: 1, player_count: 4,
+          vp_gained: 30, rank: 1, same_ranks: 1
+        )
+      ]
+    )
+  end
+
+  let(:player3) do
+    Player.new(
+      name: 'palyer3',
+      scores: [
+        Score.new(
+          round_id: 1, table_number: 1, player_count: 4,
+          vp_gained: 18, rank: 3, same_ranks: 1
+        ),
+        Score.new( # TODO: FIX
+          round_id: 2, table_number: 1, player_count: 4,
+          vp_gained: 30, rank: 1, same_ranks: 1
+        )
+      ]
+    )
+  end
+
+  let(:player4) do
+    Player.new(
+      name: 'palyer4',
+      scores: [
+        Score.new(
+          round_id: 1, table_number: 1, player_count: 4,
+          vp_gained: 12, rank: 4, same_ranks: 1
+        ),
+        Score.new( # TODO: FIX
+          round_id: 2, table_number: 1, player_count: 4,
+          vp_gained: 30, rank: 1, same_ranks: 1
+        )
+      ]
+    )
+  end
+
+  let(:player5) do
+    Player.new(
+      name: 'palyer5',
+      scores: [
+        Score.new(
+          round_id: 1, table_number: 2, player_count: 3,
+          vp_gained: 32, rank: 1, same_ranks: 1
+        ),
+        Score.new( # TODO: FIX
+          round_id: 2, table_number: 1, player_count: 4,
+          vp_gained: 30, rank: 1, same_ranks: 1
+        )
+      ]
+    )
+  end
+
+  let(:player6) do
+    Player.new(
+      name: 'palyer6',
+      scores: [
+        Score.new(
+          round_id: 1, table_number: 2, player_count: 3,
+          vp_gained: 24, rank: 3, same_ranks: 1
+        ),
+        Score.new( # TODO: FIX
+          round_id: 2, table_number: 1, player_count: 4,
+          vp_gained: 30, rank: 1, same_ranks: 1
+        )
+      ]
+    )
+  end
+
+  let(:player7) do
+    Player.new(
+      name: 'palyer7',
+      scores: [
+        Score.new(
+          round_id: 1, table_number: 2, player_count: 3,
+          vp_gained: 16, rank: 3, same_ranks: 1
+        ),
+        Score.new( # TODO: FIX
+          round_id: 2, table_number: 1, player_count: 4,
+          vp_gained: 30, rank: 1, same_ranks: 1
+        )
+      ]
+    )
+  end
+
+  let(:players) { [player1, player2, player3, player4, player5, player6, player7] }
 end
