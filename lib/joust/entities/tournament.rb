@@ -6,6 +6,6 @@ class Tournament < Hanami::Entity
       [v, player]
     end
 
-    ranking_values.sort.map.with_index { |(_, p), i| [i + 1, p] }
+    ranking_values.sort.map.with_index { |(_, p), i| { rank: i + 1, player: p } }
   end
 end
