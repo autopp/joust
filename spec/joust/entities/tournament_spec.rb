@@ -1,5 +1,7 @@
 RSpec.describe Tournament, players: 7 do
-  let(:tournament) { described_class.new(finished_count: finished_count, players: players) }
+  let(:tournament) do
+    described_class.new(finished_count: finished_count, players: players, total_vp_used: true)
+  end
 
   describe '#ranking' do
     subject { tournament.ranking }
@@ -14,7 +16,7 @@ RSpec.describe Tournament, players: 7 do
             { rank: 2, player: player5 },
             { rank: 3, player: player2 },
             { rank: 4, player: player6 },
-            { rank: 5, player: player3 },
+            { rank: 4, player: player3 },
             { rank: 6, player: player7 },
             { rank: 7, player: player4 }
           ]
