@@ -26,5 +26,9 @@ RSpec.describe Tournament, players: 7 do
         )
       end
     end
+
+    context 'when finished round is two' do
+      let(:finished_count) { 2 }
+    end
   end
 end
