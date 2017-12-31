@@ -19,7 +19,7 @@ RSpec.describe Tournament, players: 7 do
             { rank: 2, player: player5 },
             { rank: 3, player: player2 },
             { rank: 4, player: player6 },
-            { rank: 4, player: player3 },
+            { rank: 5, player: player3 },
             { rank: 6, player: player7 },
             { rank: 7, player: player4 }
           ]

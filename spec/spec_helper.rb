@@ -151,7 +151,7 @@ shared_context 'with 7 players', players: 7 do
       scores: [
         Score.new(
           round_id: 1, table_number: 2, player_count: 3,
-          vp_gained: 24, rank: 3, same_ranks: 1
+          vp_gained: 24, rank: 2, same_ranks: 1
         ),
         Score.new( # TODO: FIX
           round_id: 2, table_number: 1, player_count: 4,
