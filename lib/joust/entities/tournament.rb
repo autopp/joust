@@ -1,13 +1,11 @@
 class Tournament < Hanami::Entity
   def ranking
     ranking_values = players.group_by do |player|
-      scores = player.scores.take(finished_count)
-      v = [scores.map(&:tp).reduce(&:+)]
-      v << scores.map(&:vp).reduce(&:+) if total_vp_used
-      if rank_history_used
-        v << scores.each_with_object(Array.new(4, 0)) { |s, counts| counts[s.rank - 1] += 1 }
-      end
-      v
+      tp, vp, rank_history = player.ranking_value
+      value = [tp]
+      value << vp if total_vp_used
+      value << rank_history if rank_history_used
+      value
     end
 
     rank = 1
