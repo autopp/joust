@@ -73,9 +73,9 @@ shared_context 'with 7 players', players: 7 do
           round_id: 1, table_number: 1, player_count: 4,
           vp_gained: 30, rank: 1, same_ranks: 1
         ),
-        Score.new( # TODO: FIX
+        Score.new(
           round_id: 2, table_number: 1, player_count: 4,
-          vp_gained: 30, rank: 1, same_ranks: 1
+          vp_gained: 40, rank: 1, same_ranks: 1
         )
       ]
     )
@@ -89,9 +89,9 @@ shared_context 'with 7 players', players: 7 do
           round_id: 1, table_number: 1, player_count: 4,
           vp_gained: 24, rank: 2, same_ranks: 1
         ),
-        Score.new( # TODO: FIX
+        Score.new(
           round_id: 2, table_number: 1, player_count: 4,
-          vp_gained: 30, rank: 1, same_ranks: 1
+          vp_gained: 24, rank: 2, same_ranks: 1
         )
       ]
     )
@@ -105,9 +105,9 @@ shared_context 'with 7 players', players: 7 do
           round_id: 1, table_number: 1, player_count: 4,
           vp_gained: 18, rank: 3, same_ranks: 1
         ),
-        Score.new( # TODO: FIX
-          round_id: 2, table_number: 1, player_count: 4,
-          vp_gained: 30, rank: 1, same_ranks: 1
+        Score.new(
+          round_id: 2, table_number: 2, player_count: 3,
+          vp_gained: 28, rank: 2, same_ranks: 2
         )
       ]
     )
@@ -121,9 +121,9 @@ shared_context 'with 7 players', players: 7 do
           round_id: 1, table_number: 1, player_count: 4,
           vp_gained: 12, rank: 4, same_ranks: 1
         ),
-        Score.new( # TODO: FIX
-          round_id: 2, table_number: 1, player_count: 4,
-          vp_gained: 30, rank: 1, same_ranks: 1
+        Score.new(
+          round_id: 2, table_number: 2, player_count: 3,
+          vp_gained: 48, rank: 1, same_ranks: 1
         )
       ]
     )
@@ -137,9 +137,9 @@ shared_context 'with 7 players', players: 7 do
           round_id: 1, table_number: 2, player_count: 3,
           vp_gained: 32, rank: 1, same_ranks: 1
         ),
-        Score.new( # TODO: FIX
+        Score.new(
           round_id: 2, table_number: 1, player_count: 4,
-          vp_gained: 30, rank: 1, same_ranks: 1
+          vp_gained: 20, rank: 3, same_ranks: 1
         )
       ]
     )
@@ -153,9 +153,9 @@ shared_context 'with 7 players', players: 7 do
           round_id: 1, table_number: 2, player_count: 3,
           vp_gained: 24, rank: 2, same_ranks: 1
         ),
-        Score.new( # TODO: FIX
+        Score.new(
           round_id: 2, table_number: 1, player_count: 4,
-          vp_gained: 30, rank: 1, same_ranks: 1
+          vp_gained: 15, rank: 4, same_ranks: 1
         )
       ]
     )
@@ -169,9 +169,9 @@ shared_context 'with 7 players', players: 7 do
           round_id: 1, table_number: 2, player_count: 3,
           vp_gained: 16, rank: 3, same_ranks: 1
         ),
-        Score.new( # TODO: FIX
-          round_id: 2, table_number: 1, player_count: 4,
-          vp_gained: 30, rank: 1, same_ranks: 1
+        Score.new(
+          round_id: 2, table_number: 2, player_count: 3,
+          vp_gained: 28, rank: 2, same_ranks: 2
         )
       ]
     )
