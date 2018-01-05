@@ -62,19 +62,32 @@ RSpec.configure do |config|
   # This setting enables warnings. It's recommended, but in many cases may
   # be too noisy due to issues in dependencies.
   config.warnings = false
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
 end
 
 shared_context 'with 7 players', players: 7 do
   let(:player1) do
     Player.new(
+      id: 1,
+      tournament_id: 1,
       name: 'palyer1',
       scores: [
         Score.new(
-          round_id: 1, table_number: 1, player_count: 4,
+          player_id: 1, round_id: 1, table_number: 1, player_count: 4,
           vp_gained: 30, rank: 1, same_ranks: 1
         ),
         Score.new(
-          round_id: 2, table_number: 1, player_count: 4,
+          player_id: 1, round_id: 2, table_number: 1, player_count: 4,
           vp_gained: 40, rank: 1, same_ranks: 1
         )
       ]
@@ -83,14 +96,16 @@ shared_context 'with 7 players', players: 7 do
 
   let(:player2) do
     Player.new(
+      id: 2,
+      tournament_id: 1,
       name: 'palyer2',
       scores: [
         Score.new(
-          round_id: 1, table_number: 1, player_count: 4,
+          player_id: 2, round_id: 1, table_number: 1, player_count: 4,
           vp_gained: 24, rank: 2, same_ranks: 1
         ),
         Score.new(
-          round_id: 2, table_number: 1, player_count: 4,
+          player_id: 2, round_id: 2, table_number: 1, player_count: 4,
           vp_gained: 24, rank: 2, same_ranks: 1
         )
       ]
@@ -99,14 +114,16 @@ shared_context 'with 7 players', players: 7 do
 
   let(:player3) do
     Player.new(
+      id: 3,
+      tournament_id: 1,
       name: 'palyer3',
       scores: [
         Score.new(
-          round_id: 1, table_number: 1, player_count: 4,
+          player_id: 3, round_id: 1, table_number: 1, player_count: 4,
           vp_gained: 18, rank: 3, same_ranks: 1
         ),
         Score.new(
-          round_id: 2, table_number: 2, player_count: 3,
+          player_id: 3, round_id: 2, table_number: 2, player_count: 3,
           vp_gained: 28, rank: 2, same_ranks: 2
         )
       ]
@@ -115,14 +132,16 @@ shared_context 'with 7 players', players: 7 do
 
   let(:player4) do
     Player.new(
+      id: 4,
+      tournament_id: 1,
       name: 'palyer4',
       scores: [
         Score.new(
-          round_id: 1, table_number: 1, player_count: 4,
+          player_id: 4, round_id: 1, table_number: 1, player_count: 4,
           vp_gained: 12, rank: 4, same_ranks: 1
         ),
         Score.new(
-          round_id: 2, table_number: 2, player_count: 3,
+          player_id: 4, round_id: 2, table_number: 2, player_count: 3,
           vp_gained: 48, rank: 1, same_ranks: 1
         )
       ]
@@ -131,14 +150,16 @@ shared_context 'with 7 players', players: 7 do
 
   let(:player5) do
     Player.new(
+      id: 5,
+      tournament_id: 1,
       name: 'palyer5',
       scores: [
         Score.new(
-          round_id: 1, table_number: 2, player_count: 3,
+          player_id: 5, round_id: 1, table_number: 2, player_count: 3,
           vp_gained: 32, rank: 1, same_ranks: 1
         ),
         Score.new(
-          round_id: 2, table_number: 1, player_count: 4,
+          player_id: 5, round_id: 2, table_number: 1, player_count: 4,
           vp_gained: 20, rank: 3, same_ranks: 1
         )
       ]
@@ -147,14 +168,16 @@ shared_context 'with 7 players', players: 7 do
 
   let(:player6) do
     Player.new(
+      id: 6,
+      tournament_id: 1,
       name: 'palyer6',
       scores: [
         Score.new(
-          round_id: 1, table_number: 2, player_count: 3,
+          player_id: 6, round_id: 1, table_number: 2, player_count: 3,
           vp_gained: 24, rank: 2, same_ranks: 1
         ),
         Score.new(
-          round_id: 2, table_number: 1, player_count: 4,
+          player_id: 6, round_id: 2, table_number: 1, player_count: 4,
           vp_gained: 15, rank: 4, same_ranks: 1
         )
       ]
@@ -163,14 +186,16 @@ shared_context 'with 7 players', players: 7 do
 
   let(:player7) do
     Player.new(
+      id: 7,
+      tournament_id: 1,
       name: 'palyer7',
       scores: [
         Score.new(
-          round_id: 1, table_number: 2, player_count: 3,
+          player_id: 7, round_id: 1, table_number: 2, player_count: 3,
           vp_gained: 16, rank: 3, same_ranks: 1
         ),
         Score.new(
-          round_id: 2, table_number: 2, player_count: 3,
+          player_id: 7, round_id: 2, table_number: 2, player_count: 3,
           vp_gained: 28, rank: 2, same_ranks: 2
         )
       ]

@@ -7,4 +7,7 @@ class TournamentRepository < Hanami::Repository
   def create_with_players(params)
     assoc(:players).create(params)
   end
+
+  def find_with_attrs(id)
+  end
 end
