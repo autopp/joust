@@ -9,5 +9,6 @@ class TournamentRepository < Hanami::Repository
   end
 
   def find_with_attrs(id)
+
   end
 end
