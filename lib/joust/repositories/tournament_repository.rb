@@ -8,7 +8,7 @@ class TournamentRepository < Hanami::Repository
     assoc(:players).create(params)
   end
 
-  def find_with_attrs(id)
-
+  def find_with_rounds(id)
+    aggregate(:rounds).where(id: id).as(Tournament).one
   end
 end

@@ -33,7 +33,7 @@ describe TournamentRepository do
       )
     end
 
-    subject { repo.find_with_attrs(1) }
+    subject { repo.find_with_rounds(1) }
 
     before do
       repo.create(tournament.to_h)
@@ -52,8 +52,6 @@ describe TournamentRepository do
     it 'returns tournament with players, rounds and scores' do
       expect(subject).to eq(tournament)
       expect(subject.rounds).to eq(rounds)
-      expect(subject.players).to eq(players)
-      expect(subject.players.map(&:scores)).to eq(players.map(&:scores))
     end
   end
 end
