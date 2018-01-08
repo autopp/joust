@@ -84,11 +84,11 @@ shared_context 'with 7 players', players: 7 do
       scores: [
         Score.new(
           player_id: 1, round_id: 1, table_number: 1, player_count: 4,
-          vp_gained: 30, rank: 1, same_ranks: 1
+          vp_gained: 30, has_extra_turn: false, rank: 1, same_ranks: 1
         ),
         Score.new(
           player_id: 1, round_id: 2, table_number: 1, player_count: 4,
-          vp_gained: 40, rank: 1, same_ranks: 1
+          vp_gained: 40, has_extra_turn: false, rank: 1, same_ranks: 1
         )
       ]
     )
@@ -102,11 +102,11 @@ shared_context 'with 7 players', players: 7 do
       scores: [
         Score.new(
           player_id: 2, round_id: 1, table_number: 1, player_count: 4,
-          vp_gained: 24, rank: 2, same_ranks: 1
+          vp_gained: 24, has_extra_turn: false, rank: 2, same_ranks: 1
         ),
         Score.new(
           player_id: 2, round_id: 2, table_number: 1, player_count: 4,
-          vp_gained: 24, rank: 2, same_ranks: 1
+          vp_gained: 24, has_extra_turn: false, rank: 2, same_ranks: 1
         )
       ]
     )
@@ -120,11 +120,11 @@ shared_context 'with 7 players', players: 7 do
       scores: [
         Score.new(
           player_id: 3, round_id: 1, table_number: 1, player_count: 4,
-          vp_gained: 18, rank: 3, same_ranks: 1
+          vp_gained: 18, has_extra_turn: false, rank: 3, same_ranks: 1
         ),
         Score.new(
           player_id: 3, round_id: 2, table_number: 2, player_count: 3,
-          vp_gained: 28, rank: 2, same_ranks: 2
+          vp_gained: 28, has_extra_turn: false, rank: 2, same_ranks: 2
         )
       ]
     )
@@ -138,11 +138,11 @@ shared_context 'with 7 players', players: 7 do
       scores: [
         Score.new(
           player_id: 4, round_id: 1, table_number: 1, player_count: 4,
-          vp_gained: 12, rank: 4, same_ranks: 1
+          vp_gained: 12, has_extra_turn: false, rank: 4, same_ranks: 1
         ),
         Score.new(
           player_id: 4, round_id: 2, table_number: 2, player_count: 3,
-          vp_gained: 48, rank: 1, same_ranks: 1
+          vp_gained: 48, has_extra_turn: false, rank: 1, same_ranks: 1
         )
       ]
     )
@@ -156,11 +156,11 @@ shared_context 'with 7 players', players: 7 do
       scores: [
         Score.new(
           player_id: 5, round_id: 1, table_number: 2, player_count: 3,
-          vp_gained: 32, rank: 1, same_ranks: 1
+          vp_gained: 32, has_extra_turn: false, rank: 1, same_ranks: 1
         ),
         Score.new(
           player_id: 5, round_id: 2, table_number: 1, player_count: 4,
-          vp_gained: 20, rank: 3, same_ranks: 1
+          vp_gained: 20, has_extra_turn: false, rank: 3, same_ranks: 1
         )
       ]
     )
@@ -174,11 +174,11 @@ shared_context 'with 7 players', players: 7 do
       scores: [
         Score.new(
           player_id: 6, round_id: 1, table_number: 2, player_count: 3,
-          vp_gained: 24, rank: 2, same_ranks: 1
+          vp_gained: 24, has_extra_turn: false, rank: 2, same_ranks: 1
         ),
         Score.new(
           player_id: 6, round_id: 2, table_number: 1, player_count: 4,
-          vp_gained: 15, rank: 4, same_ranks: 1
+          vp_gained: 15, has_extra_turn: false, rank: 4, same_ranks: 1
         )
       ]
     )
@@ -192,11 +192,11 @@ shared_context 'with 7 players', players: 7 do
       scores: [
         Score.new(
           player_id: 7, round_id: 1, table_number: 2, player_count: 3,
-          vp_gained: 16, rank: 3, same_ranks: 1
+          vp_gained: 16, has_extra_turn: false, rank: 3, same_ranks: 1
         ),
         Score.new(
           player_id: 7, round_id: 2, table_number: 2, player_count: 3,
-          vp_gained: 28, rank: 2, same_ranks: 2
+          vp_gained: 28, has_extra_turn: false, rank: 2, same_ranks: 2
         )
       ]
     )
