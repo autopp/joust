@@ -4,10 +4,6 @@ RSpec.describe PlayerRepository, type: :repository do
   describe '#find_with_scores_by_tournament_id', players: 7 do
     subject { repo.find_with_scores_by_tournament_id(1) }
 
-    let(:round1) { Round.new(id: 1, tournament_id: 1, number: 1) }
-    let(:round2) { Round.new(id: 2, tournament_id: 1, number: 2) }
-    let(:rounds) { [round1, round2] }
-
     let(:tournament) do
       Tournament.new(
         id: 1, name: 'My Tournament', finished_count: 0, players: players, rounds: rounds
