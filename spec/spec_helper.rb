@@ -75,7 +75,7 @@ RSpec.configure do |config|
   end
 end
 
-shared_context 'with 7 players', players: 7 do
+shared_context 'with a 7 players tournament', players: 7 do
   let(:player1) do
     Player.new(
       id: 1,
@@ -203,4 +203,8 @@ shared_context 'with 7 players', players: 7 do
   end
 
   let(:players) { [player1, player2, player3, player4, player5, player6, player7] }
+
+  let(:round1) { Round.new(id: 1, tournament_id: 1, number: 1) }
+  let(:round2) { Round.new(id: 2, tournament_id: 1, number: 2) }
+  let(:rounds) { [round1, round2] }
 end
