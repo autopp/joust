@@ -1,14 +1,20 @@
 require_relative '../../../../apps/web/controllers/tournament/show'
 
-RSpec.describe Web::Controllers::Tournament::Show do
-  let(:action) { described_class.new(repo: repo) }
+RSpec.describe Web::Controllers::Tournament::Show, players: 7 do
+  let(:action) { described_class.new(interactor: interactor) }
+  let(:interactor) { instance_double(Interactors::FindTournament) }
   let(:params) { Hash[id: 1] }
 
-  let(:tournament) { Tournament.new(id: 1, name: 'My Tournament') }
-  let(:repo) do
-    repo = double('repo')
-    allow(repo).to receive(:find).with(1).and_return(tournament)
-    repo
+  let(:tournament) do
+    Tournament.new(id: 1, name: 'My Tournament', players: players, rounds: rounds)
+  end
+
+  before do
+    result = double('result')
+    allow(result).to receive(:success?).and_return(false)
+    allow(result).to receive(:tournament).and_return(tournament)
+
+    allow(interactor).to receive(:call).with(id: 1).and_return(result)
   end
 
   it 'is successful' do
