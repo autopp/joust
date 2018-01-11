@@ -10,10 +10,12 @@ module Web::Controllers::Tournament
 
     def call(params)
       result = @interactor.call(id: params[:id])
-      unless result.success?
-        raise 'failure'
+      if result.success?
+        @tournament = result.tournament
+      else
+        self.status = 400
+        @errors = result.errors
       end
-      @tournament = result.tournament
     end
   end
 end
