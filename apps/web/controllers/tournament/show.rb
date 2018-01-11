@@ -4,12 +4,16 @@ module Web::Controllers::Tournament
 
     expose :tournament
 
-    def initialize(repo: TournamentRepository.new)
-      @repo = repo
+    def initialize(interactor: Interactors::FindTournament.new)
+      @interactor = interactor
     end
 
     def call(params)
-      @tournament = @repo.find(params[:id])
+      result = @interactor.call(id: params[:id])
+      unless result.success?
+        raise 'failure'
+      end
+      @tournament = result.tournament
     end
   end
 end
