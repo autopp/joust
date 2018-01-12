@@ -204,7 +204,15 @@ shared_context 'with a 7 players tournament', players: 7 do
 
   let(:players) { [player1, player2, player3, player4, player5, player6, player7] }
 
-  let(:round1) { Round.new(id: 1, tournament_id: 1, number: 1) }
-  let(:round2) { Round.new(id: 2, tournament_id: 1, number: 2) }
+  let(:round1) do
+    scores = players.map { |p| p.scores.find { |s| s.round_id == 1 } }
+    Round.new(id: 1, tournament_id: 1, number: 1, scores: scores)
+  end
+
+  let(:round2) do
+    scores = players.map { |p| p.scores.find { |s| s.round_id == 2 } }
+    Round.new(id: 2, tournament_id: 1, number: 2, scores: scores)
+  end
+
   let(:rounds) { [round1, round2] }
 end
