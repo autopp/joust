@@ -32,4 +32,16 @@ describe Interactors::FindTournament do
       expect(tournament.rounds.map(&:scores)).to eq(rounds.map(&:scores))
     end
   end
+
+  context 'when tournament dose not exist' do
+    before do
+      allow(tournament_repo).to receive(:find).with(id).and_return(nil)
+    end
+
+    it { is_expected.not_to be_a_success }
+
+    it 'exposes a error messages' do
+      expect(subject.errors).not_to be_empty
+    end
+  end
 end
