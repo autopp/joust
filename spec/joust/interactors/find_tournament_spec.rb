@@ -28,6 +28,8 @@ describe Interactors::FindTournament do
       expect(tournament).to eq(tournament)
       expect(tournament.players).to eq(players)
       expect(tournament.rounds).to eq(rounds)
+      expect(tournament.players.map(&:scores)).to eq(players.map(&:scores))
+      expect(tournament.rounds.map(&:scores)).to eq(rounds.map(&:scores))
     end
   end
 end
