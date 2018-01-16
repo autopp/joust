@@ -16,7 +16,7 @@ module Web::Views::Tournament
       end
     end
 
-    def ranking_header
+    def ranking_header # rubocop:disable Metrics/AbcSize
       html.thead do
         tr do
           td 'Rank', rowspan: '2'
@@ -28,6 +28,14 @@ module Web::Views::Tournament
             end
           end
           td 'Total', colspan: '2'
+        end
+        tr do
+          tournament.finished_count.times do
+            td 'TP'
+            td 'VP'
+          end
+          td 'TP'
+          td 'VP'
         end
       end
     end
