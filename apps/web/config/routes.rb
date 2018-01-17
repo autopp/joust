@@ -9,5 +9,6 @@ post '/tournaments', to: 'tournament#create', as: :tournaments
 get '/tournaments/:id', to: 'tournament#show', as: :tournament
 
 get '/tournaments/:tournament_id/rounds/:number', to: 'round#show', as: :round
+post '/tournament/:tournament_id/round', to: 'round#create', as: :rounds
 
 root to: 'tournament#index'
