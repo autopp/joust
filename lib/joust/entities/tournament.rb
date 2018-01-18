@@ -14,4 +14,8 @@ class Tournament < Hanami::Entity
       rank += players.size
     end
   end
+
+  def ongoring_round
+    finished_count < rounds.size ? rounds.last : nil
+  end
 end
