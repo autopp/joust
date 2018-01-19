@@ -8,10 +8,11 @@ RSpec.describe Web::Views::Tournament::Show, players: 7 do
 
   let(:tournament) do
     ::Tournament.new(
-      id: 1, name: 'My Tournament', finished_count: 2,
+      id: 1, name: 'My Tournament', finished_count: finished_count,
       rounds: rounds, players: players
     )
   end
+  let(:finished_count) { 2 }
 
   it_behaves_like 'common view', title: 'My Tournament', back_path: Web.routes.path(:tournaments)
 end
