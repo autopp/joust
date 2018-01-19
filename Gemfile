@@ -25,6 +25,7 @@ end
 
 group :test do
   gem 'rspec', '~> 3.6.0'
+  gem 'rspec-html-matchers'
   gem 'capybara'
   gem 'rspec_junit_formatter'
   gem 'database_cleaner'
