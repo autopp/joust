@@ -73,6 +73,9 @@ RSpec.configure do |config|
       example.run
     end
   end
+
+  # enable rspec-html-matchers
+  config.include RSpecHtmlMatchers
 end
 
 shared_context 'with a 7 players tournament', players: 7 do

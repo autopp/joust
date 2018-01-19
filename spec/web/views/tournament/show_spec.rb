@@ -15,4 +15,12 @@ RSpec.describe Web::Views::Tournament::Show, players: 7 do
   let(:finished_count) { 2 }
 
   it_behaves_like 'common view', title: 'My Tournament', back_path: Web.routes.path(:tournaments)
+
+  describe '#ranking_table' do
+    subject { view.ranking_table }
+
+    it 'contains table tag' do
+      expect(subject.to_s).to have_tag('table')
+    end
+  end
 end
