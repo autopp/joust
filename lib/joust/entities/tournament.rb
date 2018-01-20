@@ -15,7 +15,7 @@ class Tournament < Hanami::Entity
     end
   end
 
-  def ongoring_round
+  def ongoing_round
     finished_count < rounds.size ? rounds.last : nil
   end
 end

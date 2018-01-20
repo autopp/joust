@@ -114,8 +114,8 @@ RSpec.describe Tournament, players: 7 do
     end
   end
 
-  describe '#ongoring_round' do
-    subject { tournament.ongoring_round }
+  describe '#ongoing_round' do
+    subject { tournament.ongoing_round }
 
     let(:total_vp_used) { true }
     let(:rank_history_used) { true }
