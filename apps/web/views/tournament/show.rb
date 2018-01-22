@@ -50,5 +50,19 @@ module Web::Views::Tournament
         end
       end
     end
+
+    def round_link
+      ongoing_round = tournament.ongoing_round
+
+      if ongoing_round
+        html.link_to(
+          'Current round',
+          Web.routes.path(
+            :edit_round_path, tournament_id: tournament.id, number: ongoing_round.number
+          )
+        )
+      else
+      end
+    end
   end
 end
