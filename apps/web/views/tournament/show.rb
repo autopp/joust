@@ -55,10 +55,10 @@ module Web::Views::Tournament
       ongoing_round = tournament.ongoing_round
 
       if ongoing_round
-        html.link_to(
+        link_to(
           'Current round',
           Web.routes.path(
-            :edit_round_path, tournament_id: tournament.id, number: ongoing_round.number
+            :edit_round, tournament_id: tournament.id, number: ongoing_round.number
           )
         )
       else
