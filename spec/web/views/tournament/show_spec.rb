@@ -31,17 +31,17 @@ RSpec.describe Web::Views::Tournament::Show, players: 7 do
       let(:finished_count) { 1 }
 
       it 'contains link to ongoing round page' do
-        path = Web.routes.path(:round, tournament_id: 1, number: 2)
-        expect(subject.to_s).to have_tag('a', with: { aref: path })
+        path = Web.routes.path(:edit_round, tournament_id: 1, number: 2)
+        expect(subject.to_s).to have_tag('a', with: { href: path })
       end
     end
 
-    context 'when ongoring round exists' do
+    context 'when ongoring round dose not exist' do
       let(:finished_count) { 2 }
 
       it 'contains link to ongoing round page' do
         path = Web.routes.path(:rounds, tournament_id: 1)
-        expect(subject.to_s).to have_tag('a', with: { aref: path })
+        expect(subject.to_s).to have_tag('form', with: { action: path, method: 'POST' })
       end
     end
   end
