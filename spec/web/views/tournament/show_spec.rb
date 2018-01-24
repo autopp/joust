@@ -1,7 +1,7 @@
 require_relative '../../../../apps/web/views/tournament/show'
 
 RSpec.describe Web::Views::Tournament::Show, players: 7 do
-  let(:exposures) { { tournament: tournament } }
+  let(:exposures) { { tournament: tournament, params: {} } }
   let(:template)  { Hanami::View::Template.new('apps/web/templates/tournament/show.html.erb') }
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }

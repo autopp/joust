@@ -62,6 +62,9 @@ module Web::Views::Tournament
           )
         )
       else
+        form_for :round, Web.routes.path(:rounds, tournament_id: tournament.id) do
+          submit 'Start new round', class: 'btn btn-primary'
+        end
       end
     end
   end
