@@ -46,6 +46,14 @@ module Web::Views::Tournament
           tr class: 'ranking-row' do
             td rank, class: 'ranking-player-rank'
             td player.name, class: 'ranking-player-name'
+            player.scores.each do |score|
+              td score.tp
+              td score.vp
+            end
+            (tournament.finished_count - player.scores.size).times do
+              td ''
+              td ''
+            end
           end
         end
       end
