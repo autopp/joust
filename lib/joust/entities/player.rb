@@ -10,4 +10,8 @@ class Player < Hanami::Entity
   def total_tp(finished_count)
     scores.take(finished_count).map(&:tp).reduce(&:+)
   end
+
+  def total_vp(finished_count)
+    scores.take(finished_count).map(&:vp).reduce(&:+)
+  end
 end
