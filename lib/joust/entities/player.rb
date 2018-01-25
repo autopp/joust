@@ -6,4 +6,8 @@ class Player < Hanami::Entity
       value[2][score.rank - 1] += 1
     end
   end
+
+  def total_tp(finished_count)
+    scores.take(finished_count).map(&:tp).reduce(&:+)
+  end
 end
