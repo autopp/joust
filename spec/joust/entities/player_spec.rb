@@ -16,4 +16,12 @@ RSpec.describe Player, type: :entity, players: 7 do
       expect(subject).to eq(12 / 1r)
     end
   end
+
+  describe '#total_vp' do
+    subject { player.total_vp(2) }
+
+    it 'returns sum of vp' do
+      expect(subject).to eq(70 / 1r)
+    end
+  end
 end
