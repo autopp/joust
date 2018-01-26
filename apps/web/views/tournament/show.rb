@@ -46,6 +46,7 @@ module Web::Views::Tournament
           tr class: 'ranking-row' do
             td rank, class: 'ranking-player-rank'
             td player.name, class: 'ranking-player-name'
+            td '' # TODO: player status
             player.scores.each do |score|
               td score.tp
               td score.vp
@@ -54,6 +55,8 @@ module Web::Views::Tournament
               td ''
               td ''
             end
+            td player.total_tp(tournament.finished_count)
+            td player.total_vp(tournament.finished_count)
           end
         end
       end
