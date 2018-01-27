@@ -40,7 +40,7 @@ module Web::Views::Tournament
       end
     end
 
-    def ranking_body
+    def ranking_body # rubocop:disable Metrics/AbcSize
       html.tbody do
         tournament.ranking.each do |rank:, player:|
           tr class: 'ranking-row' do
