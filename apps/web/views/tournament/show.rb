@@ -46,7 +46,14 @@ module Web::Views::Tournament
           tr class: 'ranking-row' do
             td rank, class: 'ranking-player-rank'
             td player.name, class: 'ranking-player-name'
-            td '' # TODO: player status
+            if player.droped_round
+              status = 'Droped'
+              attrs = { class: 'btn btn-danger' }
+            else
+              status = 'Active'
+              attrs = { class: 'btn btn-success' }
+            end
+            td status, attrs
             player.scores.each do |score|
               td score.tp
               td score.vp
