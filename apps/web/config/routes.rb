@@ -12,5 +12,6 @@ post '/tournament/:tournament_id/rounds', to: 'round#create', as: :rounds
 get '/tournaments/:tournament_id/rounds/:number', to: 'round#show', as: :round
 get '/tournaments/:tournament_id/rounds/:number/edit', to: 'round#edit', as: :edit_round
 
+patch '/tournaments/:tournament_id/players/:id', to: 'player#update', as: :player
+
 root to: 'tournament#index'
-patch '/player/:id', to: 'player#update'
