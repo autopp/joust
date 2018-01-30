@@ -13,3 +13,4 @@ get '/tournaments/:tournament_id/rounds/:number', to: 'round#show', as: :round
 get '/tournaments/:tournament_id/rounds/:number/edit', to: 'round#edit', as: :edit_round
 
 root to: 'tournament#index'
+patch '/player/:id', to: 'player#update'
