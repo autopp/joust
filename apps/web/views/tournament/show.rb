@@ -52,7 +52,8 @@ module Web::Views::Tournament
               elsif tournament.ongoing_round
                 div 'Active', class: 'btn btn-success'
               else
-                form_for :player, routes.path(:player, tournament_id: tournament.id, id: player.id), method: :patch do
+                path = routes.path(:player, tournament_id: tournament.id, id: player.id)
+                form_for :player, path, method: :patch do
                   submit 'Drop out', class: 'btn btn-warning'
                 end
               end
