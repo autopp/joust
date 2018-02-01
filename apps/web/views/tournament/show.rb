@@ -53,7 +53,9 @@ module Web::Views::Tournament
               status = 'Active'
               attrs = { class: 'btn btn-success' }
             end
-            td status, attrs
+            td class: 'center' do
+              div status, attrs
+            end
             player.scores.each do |score|
               td score.tp
               td score.vp
