@@ -46,15 +46,16 @@ module Web::Views::Tournament
           tr class: 'ranking-row' do
             td rank, class: 'ranking-player-rank'
             td player.name, class: 'ranking-player-name'
-            if player.droped_round
-              status = 'Droped'
-              attrs = { class: 'btn btn-danger' }
-            else
-              status = 'Active'
-              attrs = { class: 'btn btn-success' }
-            end
             td class: 'center' do
-              div status, attrs
+              if player.droped_round
+                div 'Droped', class: 'btn btn-danger'
+              elsif tournament.ongoing_round
+                div 'Active', class: 'btn btn-success'
+              else
+                form_for :player, Web.routes.path(:player, tournament_id: tournament.id, id: player.id), method: :patch do
+                  submit 'Drop out', class: 'btn btn-warning'
+                end
+              end
             end
             player.scores.each do |score|
               td score.tp
