@@ -7,7 +7,7 @@ module Web::Views::Tournament
     end
 
     def back_path
-      Web.routes.path(:root)
+      routes.path(:root)
     end
   end
 end

@@ -23,7 +23,7 @@ module Web::Views::Tournament
           td 'Name', rowspan: '2', colspan: '2'
           1.upto(tournament.finished_count) do |i|
             td(colspan: '2') do
-              link = Web.routes.path(:round, tournament_id: tournament.id, number: i)
+              link = routes.path(:round, tournament_id: tournament.id, number: i)
               link_to("Round #{i}", link, id: i)
             end
           end
@@ -52,7 +52,7 @@ module Web::Views::Tournament
               elsif tournament.ongoing_round
                 div 'Active', class: 'btn btn-success'
               else
-                form_for :player, Web.routes.path(:player, tournament_id: tournament.id, id: player.id), method: :patch do
+                form_for :player, routes.path(:player, tournament_id: tournament.id, id: player.id), method: :patch do
                   submit 'Drop out', class: 'btn btn-warning'
                 end
               end
@@ -78,12 +78,12 @@ module Web::Views::Tournament
       if ongoing_round
         link_to(
           'Current round',
-          Web.routes.path(
+          routes.path(
             :edit_round, tournament_id: tournament.id, number: ongoing_round.number
           )
         )
       else
-        form_for :round, Web.routes.path(:rounds, tournament_id: tournament.id) do
+        form_for :round, routes.path(:rounds, tournament_id: tournament.id) do
           submit 'Start new round', class: 'btn btn-primary'
         end
       end
