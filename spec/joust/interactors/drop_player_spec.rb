@@ -7,6 +7,20 @@ describe Interactors::DropPlayer do
 
   subject { interactor.call(params) }
 
+  let(:params) { { tournament_id: 1, id: 2 } }
+
+  context 'when given parameters are valid' do
+    before do
+      t = Tournament.new(
+        id: 1, name: 'My Tournament', finished_count: 3
+      )
+      allow(tournament_repo).to receive(:find).with(1).and_return(t)
+      expect(player_repo).to receive(:update).with(2, droped_round: 3)
+    end
+
+    it { is_expected.to be_a_success }
+  end
+
   shared_examples 'failure by validations' do
     it { is_expected.not_to be_a_success }
 
