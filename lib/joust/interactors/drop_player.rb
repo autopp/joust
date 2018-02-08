@@ -9,7 +9,9 @@ module Interactors
       @player_repo = player_repo
     end
 
-    def call(_)
+    def call(params)
+      t = @tournament_repo.find(params[:tournament_id])
+      @player_repo.update(params[:id], droped_round: t.finished_count)
     end
 
     def valid?(params)
