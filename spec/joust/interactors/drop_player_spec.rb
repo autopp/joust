@@ -46,6 +46,12 @@ describe Interactors::DropPlayer do
 
       it_behaves_like 'failure case'
     end
+
+    context 'when tournament dose not exist' do
+      let(:tournament) { nil }
+
+      it_behaves_like 'failure case'
+    end
   end
 
   context 'when tournament_id is not given' do
