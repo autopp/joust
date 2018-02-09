@@ -9,19 +9,7 @@ describe Interactors::DropPlayer do
 
   let(:params) { { tournament_id: 1, id: 2 } }
 
-  context 'when given parameters are valid' do
-    before do
-      t = Tournament.new(
-        id: 1, name: 'My Tournament', finished_count: 3
-      )
-      allow(tournament_repo).to receive(:find).with(1).and_return(t)
-      expect(player_repo).to receive(:update).with(2, droped_round: 3)
-    end
-
-    it { is_expected.to be_a_success }
-  end
-
-  shared_examples 'failure by validations' do
+  shared_examples 'failure case' do
     it { is_expected.not_to be_a_success }
 
     it 'generates error messages' do
@@ -34,15 +22,41 @@ describe Interactors::DropPlayer do
     end
   end
 
+  context 'when given parameters are valid' do
+    let(:tournament) { double('Tournament', id: 1, name: 'My Tournament', finished_count: 3) }
+
+    before do
+      allow(tournament_repo).to receive(:find).with(1).and_return(tournament)
+    end
+
+    context 'when ongoing round dose not exist' do
+      before do
+        allow(tournament).to receive(:ongoing_round).and_return(nil)
+        expect(player_repo).to receive(:update).with(2, droped_round: 3)
+      end
+
+      it { is_expected.to be_a_success }
+    end
+
+    context 'when ongoing round exists' do
+      before do
+        round = Round.new(id: 4, tournament_id: 1, number: 4)
+        allow(tournament).to receive(:ongoing_round).and_return(round)
+      end
+
+      it_behaves_like 'failure case'
+    end
+  end
+
   context 'when tournament_id is not given' do
     let(:params) { { id: 2 } }
 
-    it_behaves_like 'failure by validations'
+    it_behaves_like 'failure case'
   end
 
   context 'when id is not given' do
     let(:params) { { tournament_id: 1 } }
 
-    it_behaves_like 'failure by validations'
+    it_behaves_like 'failure case'
   end
 end
