@@ -11,9 +11,12 @@ module Interactors
 
     def call(params)
       t = @tournament_repo.find(params[:tournament_id])
+      player = @player_repo.find(params[:id])
 
       if !t
         error("tournament #{params[:tournament_id]} dose not exist")
+      elsif !player
+        error("player #{params[:id]} dose not exist")
       elsif t.ongoing_round
         error('cannot drop player when ongoing round exist')
       else
