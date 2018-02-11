@@ -61,6 +61,12 @@ describe Interactors::DropPlayer do
 
       it_behaves_like 'failure case'
     end
+
+    context 'when player is not related to the tournament' do
+      let(:player) { Player.new(id: 2, tournament_id: tournament_id + 1, name: 'foo') }
+
+      it_behaves_like 'failure case'
+    end
   end
 
   context 'when tournament_id is not given' do
