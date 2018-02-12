@@ -17,6 +17,8 @@ module Interactors
         error("tournament #{params[:tournament_id]} dose not exist")
       elsif !player
         error("player #{params[:id]} dose not exist")
+      elsif player.tournament_id != params[:tournament_id]
+        error('player is not related to the tournament')
       elsif t.ongoing_round
         error('cannot drop player when ongoing round exist')
       else
