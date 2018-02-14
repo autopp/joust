@@ -4,6 +4,8 @@ module Interactors
   class DropPlayer
     include Hanami::Interactor
 
+    expose :player
+
     def initialize(tournament_repo: TournamentRepository.new, player_repo: PlayerRepository.new)
       @tournament_repo = tournament_repo
       @player_repo = player_repo
@@ -23,6 +25,7 @@ module Interactors
         error('cannot drop player when ongoing round exist')
       else
         @player_repo.update(params[:id], droped_round: t.finished_count)
+        @player = player
       end
     end
 

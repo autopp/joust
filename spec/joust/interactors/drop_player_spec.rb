@@ -39,6 +39,10 @@ describe Interactors::DropPlayer do
       end
 
       it { is_expected.to be_a_success }
+
+      it 'exposes the player' do
+        expect(subject.player).to eq(player)
+      end
     end
 
     context 'when ongoing round exists' do
