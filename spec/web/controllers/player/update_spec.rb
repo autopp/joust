@@ -3,22 +3,31 @@ RSpec.describe Web::Controllers::Player::Update, type: :action do
   let(:params) { { tournament_id: 1, id: 2 } }
   let(:interactor) { instance_double(Interactors::DropPlayer) }
 
+  subject { action.call(params) }
+
   context 'when interactor succeeds' do
+    let(:player) { Player.new(id: 2, tournament_id: 1, name: 'player1') }
+
     before do
       result = double('interactor result')
       allow(result).to receive(:success?).and_return(true)
       allow(result).to receive(:errors).and_return([])
+      allow(result).to receive(:player).and_return(player)
       allow(interactor).to receive(:call).with(params).and_return(result)
     end
 
     it 'is successful' do
-      response = action.call(params)
-      expect(response[0]).to eq 200
+      expect(subject[0]).to eq 200
     end
 
     it 'exposes no error' do
-      action.call(params)
+      subject
       expect(action.exposures).to include(errors: [])
+    end
+
+    it 'exposes the player' do
+      subject
+      expect(action.exposures).to include(player: player)
     end
   end
 end
