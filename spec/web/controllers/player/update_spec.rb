@@ -13,7 +13,9 @@ RSpec.describe Web::Controllers::Player::Update, type: :action do
       allow(result).to receive(:success?).and_return(true)
       allow(result).to receive(:errors).and_return([])
       allow(result).to receive(:player).and_return(player)
-      allow(interactor).to receive(:call).with(params).and_return(result)
+
+      expected_args = satisfying { |o| o.to_h == params }
+      allow(interactor).to receive(:call).with(expected_args).and_return(result)
     end
 
     it 'is successful' do
@@ -22,7 +24,7 @@ RSpec.describe Web::Controllers::Player::Update, type: :action do
 
     it 'exposes no error' do
       subject
-      expect(action.exposures).to include(errors: [])
+      expect(action.exposures).not_to include(errors: [])
     end
 
     it 'exposes the player' do
