@@ -24,7 +24,7 @@ RSpec.describe Web::Controllers::Player::Update, type: :action do
 
     it 'exposes no error' do
       subject
-      expect(action.exposures).not_to include(errors: [])
+      expect(action.exposures).to include(errors: nil)
     end
 
     it 'exposes the player' do
