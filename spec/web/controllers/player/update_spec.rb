@@ -49,7 +49,7 @@ RSpec.describe Web::Controllers::Player::Update, type: :action do
       expect(subject[0]).to eq 400
     end
 
-    it 'exposes interactor\'s error' do
+    it "exposes interactor's error" do
       subject
       expect(action.exposures).to include(errors: %w[error])
     end
