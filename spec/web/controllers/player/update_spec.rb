@@ -34,12 +34,12 @@ RSpec.describe Web::Controllers::Player::Update, type: :action do
   end
 
   context 'when interactor fails' do
-    let(:player) { Player.new(id: 2, tournament_id: 1, name: 'player1') }
+    let(:errors) { %w[error] }
 
     before do
       result = double('interactor result')
       allow(result).to receive(:success?).and_return(false)
-      allow(result).to receive(:errors).and_return(%w[error])
+      allow(result).to receive(:errors).and_return(errors)
 
       expected_args = satisfying { |o| o.to_h == params }
       allow(interactor).to receive(:call).with(expected_args).and_return(result)
@@ -51,7 +51,7 @@ RSpec.describe Web::Controllers::Player::Update, type: :action do
 
     it "exposes interactor's error" do
       subject
-      expect(action.exposures).to include(errors: %w[error])
+      expect(action.exposures).to include(errors: errors)
     end
   end
 end
