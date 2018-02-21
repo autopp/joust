@@ -10,7 +10,12 @@ module Web::Controllers::Player
 
     def call(params)
       result = @interactor.call(params)
-      @player = result.player
+      if result.success?
+        @player = result.player
+      else
+        @errors = result.errors
+        self.status = 400
+      end
     end
   end
 end
