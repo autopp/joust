@@ -4,8 +4,8 @@ module Web::Controllers::Player
 
     expose :player
 
-    def initialize(interactor: Interactors::DropPlayer.new)
-      @interactor = interactor
+    def initialize(drop_player: Interactors::DropPlayer.new)
+      @interactor = drop_player
     end
 
     def call(params)
