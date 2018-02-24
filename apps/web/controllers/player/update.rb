@@ -4,12 +4,15 @@ module Web::Controllers::Player
 
     expose :player
 
-    def initialize(drop_player: Interactors::DropPlayer.new)
-      @interactor = drop_player
+    def initialize(
+      drop_player: Interactors::DropPlayer.new, find_tournament: Interactors::FindTournament.new
+    )
+      @drop_player = drop_player
+      @find_tournament = find_tournament
     end
 
     def call(params)
-      result = @interactor.call(params)
+      result = @drop_player.call(params)
       if result.success?
         @player = result.player
       else
