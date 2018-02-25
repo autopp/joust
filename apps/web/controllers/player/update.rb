@@ -3,6 +3,7 @@ module Web::Controllers::Player
     include Web::Action
 
     expose :player
+    expose :tournament
 
     def initialize(
       drop_player: Interactors::DropPlayer.new, find_tournament: Interactors::FindTournament.new
@@ -15,6 +16,8 @@ module Web::Controllers::Player
       result = @drop_player.call(params)
       if result.success?
         @player = result.player
+        result = @find_tournament.call(id: params[:tournament_id])
+        @tournament = result.tournament
       else
         @errors = result.errors
         self.status = 400
