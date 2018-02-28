@@ -23,5 +23,6 @@ feature 'Drop player' do
   scenario 'Visit a tournament page and dropout' do
     visit Web.routes.path(:tournament, id: @id)
     page.first('.btn-warning').click
+    expect(page).not_to have_css('div', id: 'error_explanation')
   end
 end
