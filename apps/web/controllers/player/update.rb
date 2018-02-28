@@ -16,12 +16,12 @@ module Web::Controllers::Player
       result = @drop_player.call(params)
       if result.success?
         @player = result.player
-        result = @find_tournament.call(id: params[:tournament_id])
-        @tournament = result.tournament
       else
         @errors = result.errors
         self.status = 400
       end
+      result = @find_tournament.call(id: params[:tournament_id])
+      @tournament = result.tournament
     end
   end
 end
