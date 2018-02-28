@@ -21,5 +21,7 @@ feature 'Drop player' do
   end
 
   scenario 'Visit a tournament page and dropout' do
+    visit Web.routes.path(:tournament, id: @id)
+    page.first('.btn-warning').click
   end
 end
