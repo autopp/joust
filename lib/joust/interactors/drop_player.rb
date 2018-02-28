@@ -34,7 +34,7 @@ module Interactors
       if result.success?
         true
       else
-        error(*result.errors)
+        result.errors.each { |e| error(e) }
         false
       end
     end
