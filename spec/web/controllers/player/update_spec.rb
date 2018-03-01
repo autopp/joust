@@ -3,12 +3,12 @@ RSpec.describe Web::Controllers::Player::Update, type: :action do
   let(:params) { { tournament_id: '1', id: '2' } }
   let(:drop_player) { instance_double(Interactors::DropPlayer) }
   let(:find_tournament) { instance_double(Interactors::FindTournament) }
+  let(:tournament) { Tournament.new(id: 1, name: 'My Tournament') }
 
   subject { action.call(params) }
 
   context 'when interactor succeeds' do
     let(:player) { Player.new(id: 2, tournament_id: 1, name: 'player1') }
-    let(:tournament) { Tournament.new(id: 1, name: 'My Tournament') }
 
     before do
       drop_result = double('DropPlayer result')
@@ -48,12 +48,16 @@ RSpec.describe Web::Controllers::Player::Update, type: :action do
     let(:errors) { %w[error] }
 
     before do
-      result = double('interactor result')
-      allow(result).to receive(:success?).and_return(false)
-      allow(result).to receive(:errors).and_return(errors)
+      drop_result = double('DropPlayer result')
+      allow(drop_result).to receive(:success?).and_return(false)
+      allow(drop_result).to receive(:errors).and_return(errors)
 
       expected_args = a_hash_including(tournament_id: 1, id: 2)
-      allow(drop_player).to receive(:call).with(expected_args).and_return(result)
+      allow(drop_player).to receive(:call).with(expected_args).and_return(drop_result)
+
+      find_result = double('FindPlayer result')
+      allow(find_result).to receive(:tournament).and_return(tournament)
+      allow(find_tournament).to receive(:call).with(id: 1).and_return(find_result)
     end
 
     it 'is failure' do
