@@ -1,6 +1,6 @@
 RSpec.describe Web::Controllers::Player::Update, type: :action do
   let(:action) { described_class.new(drop_player: drop_player, find_tournament: find_tournament) }
-  let(:params) { { tournament_id: 1, id: 2 } }
+  let(:params) { { tournament_id: '1', id: '2' } }
   let(:drop_player) { instance_double(Interactors::DropPlayer) }
   let(:find_tournament) { instance_double(Interactors::FindTournament) }
 
