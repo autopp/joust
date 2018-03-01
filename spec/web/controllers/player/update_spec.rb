@@ -16,7 +16,7 @@ RSpec.describe Web::Controllers::Player::Update, type: :action do
       allow(drop_result).to receive(:errors).and_return([])
       allow(drop_result).to receive(:player).and_return(player)
 
-      expected_args = satisfying { |o| o.to_h == params }
+      expected_args = a_hash_including(tournament_id: 1, id: 2)
       allow(drop_player).to receive(:call).with(expected_args).and_return(drop_result)
 
       find_result = double('FindPlayer result')
@@ -52,7 +52,7 @@ RSpec.describe Web::Controllers::Player::Update, type: :action do
       allow(result).to receive(:success?).and_return(false)
       allow(result).to receive(:errors).and_return(errors)
 
-      expected_args = satisfying { |o| o.to_h == params }
+      expected_args = a_hash_including(tournament_id: 1, id: 2)
       allow(drop_player).to receive(:call).with(expected_args).and_return(result)
     end
 
