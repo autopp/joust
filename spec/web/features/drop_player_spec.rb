@@ -1,7 +1,5 @@
 require 'features_helper'
 
-require 'features_helper'
-
 feature 'Drop player' do
   before do
     players = <<~INPUT

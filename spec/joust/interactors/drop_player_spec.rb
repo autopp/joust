@@ -1,8 +1,8 @@
 describe Interactors::DropPlayer do
   let(:interactor) do
-    described_class.new(tournament_repo: tournament_repo, player_repo: player_repo)
+    described_class.new(find_tournament: find_tournament, player_repo: player_repo)
   end
-  let(:tournament_repo) { instance_double(TournamentRepository) }
+  let(:find_tournament) { instance_double(FindTournament) }
   let(:player_repo) { instance_double(PlayerRepository) }
 
   subject { interactor.call(params) }
@@ -28,7 +28,10 @@ describe Interactors::DropPlayer do
     let(:tournament_id) { 1 }
 
     before do
-      allow(tournament_repo).to receive(:find).with(1).and_return(tournament)
+      result = double('FindTournament result')
+      allow(result).to receive(:tournament).with(1).and_return(tournament)
+      allow(result).to receive(:success?).and_return(true)
+      allow(find_tournament).to receive(:call).with(id: 1).and_return(result)
       allow(player_repo).to receive(:find).with(2).and_return(player)
     end
 
