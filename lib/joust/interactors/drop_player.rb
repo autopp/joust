@@ -14,20 +14,23 @@ module Interactors
     end
 
     def call(params)
+      id = params[:id]
       r = @find_tournament.call(id: params[:tournament_id])
-      player = @player_repo.find(params[:id])
 
-      if !r.success?
+      unless r.success?
         error("tournament #{params[:tournament_id]} dose not exist")
-      elsif !player
-        error("player #{params[:id]} dose not exist")
-      elsif player.tournament_id != params[:tournament_id]
-        error('player is not related to the tournament')
-      elsif r.tournament.ongoing_round
+        return
+      end
+
+      tournament = r.tournament
+      @player = tournament.players.find { |p| p.id == id }
+
+      if !@player
+        error("player #{id} related to the tournament dose not exist")
+      elsif tournament.ongoing_round
         error('cannot drop player when ongoing round exist')
       else
-        @player_repo.update(params[:id], droped_round: r.tournament.finished_count)
-        @player = player
+        @player_repo.update(id, droped_round: tournament.finished_count)
       end
     end
 

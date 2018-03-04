@@ -23,7 +23,10 @@ describe Interactors::DropPlayer do
   end
 
   context 'when given parameters are valid' do
-    let(:tournament) { double('Tournament', id: 1, name: 'My Tournament', finished_count: 3) }
+    let(:tournament) do
+      double('Tournament', id: 1, name: 'My Tournament', finished_count: 3, players: players)
+    end
+    let(:players) { [player] }
     let(:player) { Player.new(id: 2, tournament_id: tournament_id, name: 'foo') }
     let(:tournament_id) { 1 }
     let(:success) { true }
@@ -65,14 +68,8 @@ describe Interactors::DropPlayer do
       it_behaves_like 'failure case'
     end
 
-    context 'when player dose not exist' do
-      let(:player) { nil }
-
-      it_behaves_like 'failure case'
-    end
-
     context 'when player is not related to the tournament' do
-      let(:player) { Player.new(id: 2, tournament_id: tournament_id + 1, name: 'foo') }
+      let(:players) { [] }
 
       it_behaves_like 'failure case'
     end
