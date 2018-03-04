@@ -6,7 +6,9 @@ module Interactors
 
     expose :player
 
-    def initialize(find_tournament: Interactors::FindTournament.new, player_repo: PlayerRepository.new)
+    def initialize(
+      find_tournament: Interactors::FindTournament.new, player_repo: PlayerRepository.new
+    )
       @find_tournament = find_tournament
       @player_repo = player_repo
     end
