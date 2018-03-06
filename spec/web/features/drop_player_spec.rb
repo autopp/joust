@@ -22,5 +22,6 @@ feature 'Drop player' do
     visit Web.routes.path(:tournament, id: @id)
     page.first('.btn-warning').click
     expect(page).not_to have_css('div', id: 'error_explanation')
+    expect(find('#player0_status')['class']).to eq('btn btn-danger')
   end
 end
