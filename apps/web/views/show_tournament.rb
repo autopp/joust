@@ -40,19 +40,22 @@ module Web::Views
 
     def ranking_body # rubocop:disable Metrics/AbcSize
       html.tbody do
-        tournament.ranking.each do |rank:, player:|
+        tournament.ranking.each_with_index do |h, i|
+          rank = h[:rank]
+          player = h[:player]
+          id = "player#{i}_status"
           tr class: 'ranking-row' do
             td rank, class: 'ranking-player-rank'
             td player.name, class: 'ranking-player-name'
             td class: 'center' do
               if player.droped_round
-                div 'Droped', class: 'btn btn-danger'
+                div 'Droped', class: 'btn btn-danger', id: id
               elsif tournament.ongoing_round
-                div 'Active', class: 'btn btn-success'
+                div 'Active', class: 'btn btn-success', id: id
               else
                 path = routes.path(:player, tournament_id: tournament.id, id: player.id)
                 form_for :player, path, method: :patch do
-                  submit 'Drop out', class: 'btn btn-warning'
+                  submit 'Drop out', class: 'btn btn-warning', id: id
                 end
               end
             end
