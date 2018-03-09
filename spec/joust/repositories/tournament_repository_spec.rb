@@ -25,9 +25,7 @@ describe TournamentRepository do
 
   describe '#add_round' do
     subject { repo.add_round(tournament) }
-    let(:tournament) do
-      Tournament.new(id: 1, name: 'My Tournament', finished_count: 1)
-    end
+    let(:tournament) { repo.create(name: 'My Tournament', finished_count: 1) }
 
     it 'returns created round' do
       expect(subject.to_h).to include(tournament_id: 1, number: 2)
