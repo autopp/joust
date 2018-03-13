@@ -1,11 +1,11 @@
 RSpec.describe Web::Controllers::Round::Create, type: :action do
   let(:action) { described_class.new(create_round: create_round) }
-  let(:interactor) { instance_double(Interactors::CreateRound) }
+  let(:create_round) { instance_double(Interactors::CreateRound) }
 
   let(:params) { { tournament_id: '1' } }
   let(:result) { double('result') }
 
-  before { allow(interactor).to receive(:call).with(params).and_return(result) }
+  before { allow(create_round).to receive(:call).with(params).and_return(result) }
 
   context 'when creating round succeeds' do
     let(:round) { Round.new(id: 2, tournament_id: 1, number: 2) }
