@@ -5,7 +5,10 @@ RSpec.describe Web::Controllers::Round::Create, type: :action do
   let(:params) { { tournament_id: '1' } }
   let(:result) { double('result') }
 
-  before { allow(create_round).to receive(:call).with(params).and_return(result) }
+  before do
+    expected_args = satisfying { |o| o.to_h == params }
+    allow(create_round).to receive(:call).with(expected_args).and_return(result)
+  end
 
   context 'when creating round succeeds' do
     let(:round) { Round.new(id: 2, tournament_id: 1, number: 2) }
