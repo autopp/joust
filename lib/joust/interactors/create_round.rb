@@ -8,5 +8,8 @@ module Interactors
       @tournament_repo = tournament_repo
       @score_repo = score_repo
     end
+
+    def call(_params)
+    end
   end
 end
