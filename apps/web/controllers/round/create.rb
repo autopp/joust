@@ -7,6 +7,16 @@ module Web::Controllers::Round
     end
 
     def call(params)
+      result = @create_round.call(params)
+
+      if result.success?
+        @round = result.round
+        path = routes.path(:round, tournament_id: @round.tournament_id, id: @round.number)
+        redirect_to path
+      else
+        self.status = 400
+        @errors = result.errors
+      end
     end
   end
 end
