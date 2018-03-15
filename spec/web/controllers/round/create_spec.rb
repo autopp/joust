@@ -31,4 +31,23 @@ RSpec.describe Web::Controllers::Round::Create, type: :action do
       expect(action.exposures).to include(round: round)
     end
   end
+
+  context 'when creating round fails' do
+    let(:errors) { ['error occurred'] }
+
+    before do
+      allow(result).to receive(:success?).and_return(false)
+      allow(result).to receive(:errors).and_return(errors)
+    end
+
+    it 'fails' do
+      response = action.call(params)
+      expect(response[0]).to eq(400)
+    end
+
+    it 'exposes errors of the interactor' do
+      action.call(params)
+      expect(action.exposures).to include(errors: errors)
+    end
+  end
 end
