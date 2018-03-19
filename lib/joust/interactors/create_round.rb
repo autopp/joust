@@ -13,7 +13,12 @@ module Interactors
       @find_tournament = find_tournament
     end
 
-    def call(_params)
+    def call(params)
+      res = @find_tournament.call(id: params[:tournament_id])
+      unless res.success?
+        error(*res.errors)
+        return
+      end
     end
 
     def valid?(params)
