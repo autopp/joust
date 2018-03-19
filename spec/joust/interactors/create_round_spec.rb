@@ -21,6 +21,7 @@ describe Interactors::CreateRound do
   context 'when params are valid' do
     let(:tournament_id) { '1' }
     let(:params) { { tournament_id: tournament_id } }
+    let(:find_result) { double('FindTournament result') }
 
     before do
       allow(find_tournament).to receive(:call).with(id: tournament_id).and_return(find_result)
