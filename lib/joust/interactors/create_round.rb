@@ -4,9 +4,13 @@ module Interactors
   class CreateRound
     include Hanami::Interactor
 
-    def initialize(tournament_repo: TournamentRepository.new, score_repo: ScoreRepository)
+    def initialize(
+      tournament_repo: TournamentRepository.new, score_repo: ScoreRepository,
+      find_tournament: Interactors::FindTournament.new
+    )
       @tournament_repo = tournament_repo
       @score_repo = score_repo
+      @find_tournament = find_tournament
     end
 
     def call(_params)
