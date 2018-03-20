@@ -35,6 +35,22 @@ describe Interactors::CreateRound do
 
       it_behaves_like 'failure case'
     end
+
+    context 'when the tournament exists' do
+      let(:tournament) { double('tournament', id: tournament_id.to_i, name: 'MyTournament') }
+
+      before do
+        allow(find_result).to receive(:success?).and_return(true)
+        allow(find_result).to receive(:tournament).and_return(tournament)
+        allow(tournament).to receive(:ongoing_round).and_return(ongoing_round)
+      end
+
+      context 'when the tournament has ongoing round' do
+        let(:ongoing_round) { instance_double(Round) }
+
+        it_behaves_like 'failure case'
+      end
+    end
   end
 
   context 'when params are invalid' do
