@@ -19,6 +19,12 @@ module Interactors
         error(*res.errors)
         return
       end
+
+      tournament = res.tournament
+      if tournament.ongoing_round
+        error("'#{tournament.name}' has ongoing round")
+        return
+      end
     end
 
     def valid?(params)
