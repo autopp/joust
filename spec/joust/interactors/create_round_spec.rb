@@ -50,6 +50,24 @@ describe Interactors::CreateRound do
 
         it_behaves_like 'failure case'
       end
+
+      context 'when the tournament dose not have ongoing round' do
+        let(:ongoing_round) { nil }
+        let(:round) { Round.new(id: 2, tournament_id: tournament_id.to_i, number: 2) }
+
+        before do
+          # it creates a new round
+          expect(tournament_repo).to receive(:create_round).with(tournament).and_return(round)
+        end
+
+        it 'succeeds' do
+          expect(subject).to be_a_success
+        end
+
+        it 'exposes the created tournament' do
+          expect(subject.round).to eq(round)
+        end
+      end
     end
   end
 
