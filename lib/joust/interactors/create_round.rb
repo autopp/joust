@@ -4,6 +4,8 @@ module Interactors
   class CreateRound
     include Hanami::Interactor
 
+    expose :round
+
     def initialize(
       tournament_repo: TournamentRepository.new, score_repo: ScoreRepository,
       find_tournament: Interactors::FindTournament.new
@@ -25,6 +27,8 @@ module Interactors
         error("'#{tournament.name}' has ongoing round")
         return
       end
+
+      @round = @tournament_repo.add_round(tournament)
     end
 
     def valid?(params)
