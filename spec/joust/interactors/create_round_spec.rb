@@ -57,7 +57,7 @@ describe Interactors::CreateRound do
 
         before do
           # it creates a new round
-          expect(tournament_repo).to receive(:create_round).with(tournament).and_return(round)
+          expect(tournament_repo).to receive(:add_round).with(tournament).and_return(round)
         end
 
         it 'succeeds' do
