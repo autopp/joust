@@ -37,7 +37,77 @@ describe Interactors::CreateRound do
     end
 
     context 'when the tournament exists' do
-      let(:tournament) { double('tournament', id: tournament_id.to_i, name: 'MyTournament') }
+      let(:tournament) do
+        double(
+          'tournament',
+          id: tournament_id.to_i, name: 'MyTournament', total_vp_used: true,
+          players: [player1]
+        )
+      end
+
+      let(:player1) do
+        score = Score.new(
+          id: 1, player_id: 1, round_id: 1,
+          table_number: 1, player_count: 4, vp_gained: 30, rank: 1, same_ranks: 1
+        )
+        Player.new(id: 1, tournament_id: tournament_id.to_i, name: 'player1', scores: [score])
+      end
+
+      let(:player2) do
+        score = Score.new(
+          id: 1, player_id: 2, round_id: 1,
+          table_number: 1, player_count: 4, vp_gained: 24, rank: 2, same_ranks: 1
+        )
+        Player.new(id: 2, tournament_id: tournament_id.to_i, name: 'player2', scores: [score])
+      end
+
+      let(:player3) do
+        score = Score.new(
+          id: 1, player_id: 3, round_id: 1,
+          table_number: 1, player_count: 4, vp_gained: 12, rank: 3, same_ranks: 1
+        )
+        Player.new(id: 3, tournament_id: tournament_id.to_i, name: 'player3', scores: [score])
+      end
+
+      let(:player4) do
+        score = Score.new(
+          id: 1, player_id: 4, round_id: 1,
+          table_number: 1, player_count: 4, vp_gained: 6, rank: 4, same_ranks: 1
+        )
+        Player.new(id: 4, tournament_id: tournament_id.to_i, name: 'player4', scores: [score])
+      end
+
+      let(:player5) do
+        score = Score.new(
+          id: 1, player_id: 5, round_id: 1,
+          table_number: 2, player_count: 4, vp_gained: 24, rank: 1, same_ranks: 1
+        )
+        Player.new(id: 5, tournament_id: tournament_id.to_i, name: 'player5', scores: [score])
+      end
+
+      let(:player6) do
+        score = Score.new(
+          id: 1, player_id: 6, round_id: 1,
+          table_number: 2, player_count: 4, vp_gained: 12, rank: 2, same_ranks: 1, droped_round: 1
+        )
+        Player.new(id: 6, tournament_id: tournament_id.to_i, name: 'player6', scores: [score])
+      end
+
+      let(:player7) do
+        score = Score.new(
+          id: 1, player_id: 7, round_id: 1,
+          table_number: 2, player_count: 4, vp_gained: 6, rank: 3, same_ranks: 1
+        )
+        Player.new(id: 7, tournament_id: tournament_id.to_i, name: 'player7', scores: [score])
+      end
+
+      let(:player8) do
+        score = Score.new(
+          id: 1, player_id: 8, round_id: 1,
+          table_number: 2, player_count: 4, vp_gained: 0, rank: 4, same_ranks: 1
+        )
+        Player.new(id: 8, tournament_id: tournament_id.to_i, name: 'player8', scores: [score])
+      end
 
       before do
         allow(find_result).to receive(:success?).and_return(true)
