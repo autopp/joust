@@ -130,6 +130,30 @@ describe Interactors::CreateRound do
           expect(tournament_repo).to receive(:add_round).with(tournament).and_return(round)
         end
 
+        before do
+          expect(score_repo).to receive(:create).with(
+            player_id: 1, round_id: 2, table_number: 1, player_count: 4
+          )
+          expect(score_repo).to receive(:create).with(
+            player_id: 2, round_id: 2, table_number: 1, player_count: 4
+          )
+          expect(score_repo).to receive(:create).with(
+            player_id: 3, round_id: 2, table_number: 1, player_count: 4
+          )
+          expect(score_repo).to receive(:create).with(
+            player_id: 4, round_id: 2, table_number: 2, player_count: 3
+          )
+          expect(score_repo).to receive(:create).with(
+            player_id: 5, round_id: 2, table_number: 1, player_count: 4
+          )
+          expect(score_repo).to receive(:create).with(
+            player_id: 7, round_id: 2, table_number: 2, player_count: 3
+          )
+          expect(score_repo).to receive(:create).with(
+            player_id: 8, round_id: 2, table_number: 2, player_count: 3
+          )
+        end
+
         it 'succeeds' do
           expect(subject).to be_a_success
         end
