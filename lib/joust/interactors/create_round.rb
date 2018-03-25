@@ -29,6 +29,9 @@ module Interactors
       end
 
       @round = @tournament_repo.add_round(tournament)
+      players = tournament.ranking.map { |hash| hash[:player] }.reject(&:droped_round)
+      three_players_table_size = (4 - players.size) % 4
+      four_players_table_size = (players.size + 3) / 4 - three_players_table_size
     end
 
     def valid?(params)
