@@ -113,6 +113,13 @@ describe Interactors::CreateRound do
         allow(find_result).to receive(:success?).and_return(true)
         allow(find_result).to receive(:tournament).and_return(tournament)
         allow(tournament).to receive(:ongoing_round).and_return(ongoing_round)
+        ranking = [
+          { rank: 1, player: player1 }, { rank: 2, player: player5 },
+          { rank: 3, player: player2 }, { rank: 4, player: player6 },
+          { rank: 5, player: player3 }, { rank: 6, player: player7 },
+          { rank: 7, player: player4 }, { rank: 8, player: player8 }
+        ]
+        allow(tournament).to receive(:ranking).and_return(ranking)
       end
 
       context 'when the tournament has ongoing round' do
