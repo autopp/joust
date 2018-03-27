@@ -32,6 +32,23 @@ module Interactors
       players = tournament.ranking.map { |hash| hash[:player] }.reject(&:droped_round)
       three_players_table_size = (4 - players.size) % 4
       four_players_table_size = (players.size + 3) / 4 - three_players_table_size
+      table_number = 1
+      players.take(four_players_table_size * 4).each_slice(4) do |players|
+        players.each do |player|
+          @score_repo.create(
+            player_id: player.id, round_id: @round.id, table_number: table_number, player_count: 4
+          )
+        end
+        table_number += 1
+      end
+      players.drop(four_players_table_size * 4).each_slice(3) do |players|
+        players.each do |player|
+          @score_repo.create(
+            player_id: player.id, round_id: @round.id, table_number: table_number, player_count: 3
+          )
+        end
+        table_number += 1
+      end
     end
 
     def valid?(params)

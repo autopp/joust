@@ -88,9 +88,12 @@ describe Interactors::CreateRound do
       let(:player6) do
         score = Score.new(
           id: 1, player_id: 6, round_id: 1,
-          table_number: 2, player_count: 4, vp_gained: 12, rank: 2, same_ranks: 1, droped_round: 1
+          table_number: 2, player_count: 4, vp_gained: 12, rank: 2, same_ranks: 1
         )
-        Player.new(id: 6, tournament_id: tournament_id.to_i, name: 'player6', scores: [score])
+        Player.new(
+          id: 6, tournament_id: tournament_id.to_i, name: 'player6',
+          droped_round: 1, scores: [score]
+        )
       end
 
       let(:player7) do
@@ -142,19 +145,19 @@ describe Interactors::CreateRound do
             player_id: 1, round_id: 2, table_number: 1, player_count: 4
           )
           expect(score_repo).to receive(:create).with(
+            player_id: 5, round_id: 2, table_number: 1, player_count: 4
+          )
+          expect(score_repo).to receive(:create).with(
             player_id: 2, round_id: 2, table_number: 1, player_count: 4
           )
           expect(score_repo).to receive(:create).with(
             player_id: 3, round_id: 2, table_number: 1, player_count: 4
           )
           expect(score_repo).to receive(:create).with(
-            player_id: 4, round_id: 2, table_number: 2, player_count: 3
-          )
-          expect(score_repo).to receive(:create).with(
-            player_id: 5, round_id: 2, table_number: 1, player_count: 4
-          )
-          expect(score_repo).to receive(:create).with(
             player_id: 7, round_id: 2, table_number: 2, player_count: 3
+          )
+          expect(score_repo).to receive(:create).with(
+            player_id: 4, round_id: 2, table_number: 2, player_count: 3
           )
           expect(score_repo).to receive(:create).with(
             player_id: 8, round_id: 2, table_number: 2, player_count: 3
