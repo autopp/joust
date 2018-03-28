@@ -29,25 +29,15 @@ module Interactors
       end
 
       @round = @tournament_repo.add_round(tournament)
-      players = tournament.ranking.map { |hash| hash[:player] }.reject(&:droped_round)
-      three_players_table_size = (4 - players.size) % 4
-      four_players_table_size = (players.size + 3) / 4 - three_players_table_size
-      table_number = 1
-      players.take(four_players_table_size * 4).each_slice(4) do |players|
+      active_players = tournament.ranking.map { |hash| hash[:player] }.reject(&:droped_round)
+      matchiings_of(active_players).each.with_index(1) do |players, table_number|
+        players_count = players.size
         players.each do |player|
           @score_repo.create(
-            player_id: player.id, round_id: @round.id, table_number: table_number, player_count: 4
+            player_id: player.id, round_id: @round.id,
+            table_number: table_number, player_count: players_count
           )
         end
-        table_number += 1
-      end
-      players.drop(four_players_table_size * 4).each_slice(3) do |players|
-        players.each do |player|
-          @score_repo.create(
-            player_id: player.id, round_id: @round.id, table_number: table_number, player_count: 3
-          )
-        end
-        table_number += 1
       end
     end
 
@@ -59,6 +49,16 @@ module Interactors
         result.errors.each { |e| error(e) }
         false
       end
+    end
+
+    private
+
+    def matchiings_of(players)
+      three_players_table_size = (4 - players.size) % 4
+      four_players_table_size = (players.size + 3) / 4 - three_players_table_size
+      four_players_tables = players.take(four_players_table_size * 4).each_slice(4)
+      three_players_tables = players.drop(four_players_table_size * 4).each_slice(3)
+      four_players_tables.to_a + three_players_tables.to_a
     end
 
     class Validator
