@@ -17,27 +17,16 @@ module Interactors
 
     def call(params)
       res = @find_tournament.call(id: params[:tournament_id])
-      unless res.success?
-        error(*res.errors)
-        return
-      end
+      error!(*res.errors) unless res.success?
 
       tournament = res.tournament
-      if tournament.ongoing_round
-        error("'#{tournament.name}' has ongoing round")
-        return
-      end
+      error!("'#{tournament.name}' has ongoing round") if tournament.ongoing_round
 
       @round = @tournament_repo.add_round(tournament)
+      round_id = @round.id
       active_players = tournament.ranking.map { |hash| hash[:player] }.reject(&:droped_round)
       matchiings_of(active_players).each.with_index(1) do |players, table_number|
-        players_count = players.size
-        players.each do |player|
-          @score_repo.create(
-            player_id: player.id, round_id: @round.id,
-            table_number: table_number, player_count: players_count
-          )
-        end
+        create_table(players, round_id, table_number)
       end
     end
 
@@ -59,6 +48,16 @@ module Interactors
       four_players_tables = players.take(four_players_table_size * 4).each_slice(4)
       three_players_tables = players.drop(four_players_table_size * 4).each_slice(3)
       four_players_tables.to_a + three_players_tables.to_a
+    end
+
+    def create_table(players, round_id, table_number)
+      players_count = players.size
+      players.each do |player|
+        @score_repo.create(
+          player_id: player.id, round_id: round_id,
+          table_number: table_number, player_count: players_count
+        )
+      end
     end
 
     class Validator
