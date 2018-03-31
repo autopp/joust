@@ -4,8 +4,12 @@ module Web::Controllers::Round
 
     expose :round
 
-    def initialize(create_round: Interactors::CreateRound.new)
+    def initialize(
+      create_round: Interactors::CreateRound.new,
+      find_tournament: Interactors::FindTournament.new
+    )
       @create_round = create_round
+      @find_tournament = find_tournament
     end
 
     def call(params)

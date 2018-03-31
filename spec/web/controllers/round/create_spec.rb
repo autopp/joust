@@ -1,6 +1,7 @@
 RSpec.describe Web::Controllers::Round::Create, type: :action do
-  let(:action) { described_class.new(create_round: create_round) }
+  let(:action) { described_class.new(create_round: create_round, find_tournament: find_tournament) }
   let(:create_round) { instance_double(Interactors::CreateRound) }
+  let(:find_tournament) { instance_double(Interactors::FindTournament) }
 
   let(:params) { { tournament_id: '1' } }
   let(:result) { double('result') }
