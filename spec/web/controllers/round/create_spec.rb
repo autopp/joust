@@ -11,6 +11,13 @@ RSpec.describe Web::Controllers::Round::Create, type: :action do
     allow(create_round).to receive(:call).with(expected_args).and_return(result)
   end
 
+  before do
+    find_result = double('result')
+    allow(find_result).to receive(:success?).and_return(true)
+    allow(find_result).to receive(:tournament).and_return(Tournament.new(id: 1))
+    allow(find_tournament).to receive(:call).with(id: '1').and_return(find_result)
+  end
+
   context 'when creating round succeeds' do
     let(:round) { Round.new(id: 2, tournament_id: 1, number: 2) }
 
