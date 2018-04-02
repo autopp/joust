@@ -11,10 +11,11 @@ RSpec.describe Web::Controllers::Round::Create, type: :action do
     allow(create_round).to receive(:call).with(expected_args).and_return(result)
   end
 
+  let(:tournament) { Tournament.new(id: 1) }
   before do
     find_result = double('result')
     allow(find_result).to receive(:success?).and_return(true)
-    allow(find_result).to receive(:tournament).and_return(Tournament.new(id: 1))
+    allow(find_result).to receive(:tournament).and_return(tournament)
     allow(find_tournament).to receive(:call).with(id: '1').and_return(find_result)
   end
 
@@ -56,6 +57,11 @@ RSpec.describe Web::Controllers::Round::Create, type: :action do
     it 'exposes errors of the interactor' do
       action.call(params)
       expect(action.exposures).to include(errors: errors)
+    end
+
+    it 'exposes the tournament for view' do
+      action.call(params)
+      expect(action.exposures).to include(tournament: tournament)
     end
   end
 end

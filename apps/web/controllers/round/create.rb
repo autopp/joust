@@ -3,6 +3,7 @@ module Web::Controllers::Round
     include Web::Action
 
     expose :round
+    expose :tournament
 
     def initialize(
       create_round: Interactors::CreateRound.new,
@@ -22,6 +23,7 @@ module Web::Controllers::Round
       else
         self.status = 400
         @errors = result.errors
+        @tournament = @find_tournament.call(id: params[:tournament_id]).tournament
       end
     end
   end
