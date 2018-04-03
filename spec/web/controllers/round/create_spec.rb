@@ -27,11 +27,11 @@ RSpec.describe Web::Controllers::Round::Create, type: :action do
       allow(result).to receive(:round).and_return(round)
     end
 
-    it 'redirects to "/tournaments/1/rounds/2"' do
+    it 'redirects to "/tournaments/1/rounds/2/edit"' do
       response = action.call(params)
       expect(response[0]).to eq(302)
       expect(response[1]).to include(
-        'Location' => Web.routes.path(:round, tournament_id: 1, number: 2)
+        'Location' => Web.routes.path(:edit_round, tournament_id: 1, number: 2)
       )
     end
 
