@@ -7,7 +7,7 @@ module Interactors
     expose :round
 
     def initialize(
-      tournament_repo: TournamentRepository.new, score_repo: ScoreRepository,
+      tournament_repo: TournamentRepository.new, score_repo: ScoreRepository.new,
       find_tournament: Interactors::FindTournament.new
     )
       @tournament_repo = tournament_repo
