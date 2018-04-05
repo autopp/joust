@@ -18,7 +18,7 @@ module Web::Controllers::Round
 
       if result.success?
         @round = result.round
-        path = routes.path(:edit_round, tournament_id: @round.tournament_id, number: @round.number)
+        path = routes.path(:round, tournament_id: @round.tournament_id, number: @round.number)
         redirect_to path
       else
         self.status = 400

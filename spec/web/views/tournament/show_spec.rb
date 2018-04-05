@@ -31,7 +31,7 @@ RSpec.describe Web::Views::Tournament::Show, players: 7 do
       let(:finished_count) { 1 }
 
       it 'contains link to ongoing round page' do
-        path = Web.routes.path(:edit_round, tournament_id: 1, number: 2)
+        path = Web.routes.path(:round, tournament_id: 1, number: 2)
         expect(subject.to_s).to have_tag('a', with: { href: path })
       end
     end

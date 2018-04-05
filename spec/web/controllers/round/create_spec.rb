@@ -31,7 +31,7 @@ RSpec.describe Web::Controllers::Round::Create, type: :action do
       response = action.call(params)
       expect(response[0]).to eq(302)
       expect(response[1]).to include(
-        'Location' => Web.routes.path(:edit_round, tournament_id: 1, number: 2)
+        'Location' => Web.routes.path(:round, tournament_id: 1, number: 2)
       )
     end
 
