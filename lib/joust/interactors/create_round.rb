@@ -20,7 +20,7 @@ module Interactors
       error!(*res.errors) unless res.success?
 
       tournament = res.tournament
-      error!("'#{tournament.name}' has ongoing round") if tournament.ongoing_round
+      error!("'#{tournament.name}' has ongoing round") if tournament.ongoing_round_number
 
       @round = @tournament_repo.add_round(tournament)
       round_id = @round.id

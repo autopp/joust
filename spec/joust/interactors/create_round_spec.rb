@@ -41,7 +41,7 @@ describe Interactors::CreateRound do
         double(
           'tournament',
           id: tournament_id.to_i, name: 'MyTournament', total_vp_used: true,
-          players: [player1]
+          ongoing_round_number: ongoing_round_number, players: [player1]
         )
       end
 
@@ -115,7 +115,6 @@ describe Interactors::CreateRound do
       before do
         allow(find_result).to receive(:success?).and_return(true)
         allow(find_result).to receive(:tournament).and_return(tournament)
-        allow(tournament).to receive(:ongoing_round).and_return(ongoing_round)
         ranking = [
           { rank: 1, player: player1 }, { rank: 2, player: player5 },
           { rank: 3, player: player2 }, { rank: 4, player: player6 },
@@ -126,13 +125,13 @@ describe Interactors::CreateRound do
       end
 
       context 'when the tournament has ongoing round' do
-        let(:ongoing_round) { instance_double(Round) }
+        let(:ongoing_round_number) { 1 }
 
         it_behaves_like 'failure case'
       end
 
       context 'when the tournament dose not have ongoing round' do
-        let(:ongoing_round) { nil }
+        let(:ongoing_round_number) { nil }
         let(:round) { Round.new(id: 2, tournament_id: tournament_id.to_i, number: 2) }
 
         before do
