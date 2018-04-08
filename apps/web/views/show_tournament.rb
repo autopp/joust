@@ -50,7 +50,7 @@ module Web::Views
             td class: 'center' do
               if player.droped_round
                 div 'Droped', class: 'btn btn-danger', id: id
-              elsif tournament.ongoing_round
+              elsif tournament.ongoing_round_number
                 div 'Active', class: 'btn btn-success', id: id
               else
                 path = routes.path(:player, tournament_id: tournament.id, id: player.id)
@@ -75,13 +75,13 @@ module Web::Views
     end
 
     def round_link
-      ongoing_round = tournament.ongoing_round
+      ongoing_round_number = tournament.ongoing_round_number
 
-      if ongoing_round
+      if ongoing_round_number
         link_to(
           'Current round',
           routes.path(
-            :round, tournament_id: tournament.id, number: ongoing_round.number
+            :round, tournament_id: tournament.id, number: ongoing_round_number
           )
         )
       else

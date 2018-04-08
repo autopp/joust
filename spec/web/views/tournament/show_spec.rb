@@ -8,11 +8,11 @@ RSpec.describe Web::Views::Tournament::Show, players: 7 do
 
   let(:tournament) do
     ::Tournament.new(
-      id: 1, name: 'My Tournament', finished_count: finished_count,
+      id: 1, name: 'My Tournament', finished_count: 1, ongoing_round_number: ongoing_round_number,
       rounds: rounds, players: players
     )
   end
-  let(:finished_count) { 2 }
+  let(:ongoing_round_number) { 2 }
 
   it_behaves_like 'common view', title: 'My Tournament', back_path: Web.routes.path(:tournaments)
 
@@ -28,7 +28,7 @@ RSpec.describe Web::Views::Tournament::Show, players: 7 do
     subject { view.round_link }
 
     context 'when ongoring round exists' do
-      let(:finished_count) { 1 }
+      let(:ongoing_round_number) { 2 }
 
       it 'contains link to ongoing round page' do
         path = Web.routes.path(:round, tournament_id: 1, number: 2)
@@ -37,7 +37,7 @@ RSpec.describe Web::Views::Tournament::Show, players: 7 do
     end
 
     context 'when ongoring round dose not exist' do
-      let(:finished_count) { 2 }
+      let(:ongoing_round_number) { nil }
 
       it 'contains link to ongoing round page' do
         path = Web.routes.path(:rounds, tournament_id: 1)
