@@ -27,7 +27,7 @@ module Interactors
 
       if !@player
         error("player #{id} related to the tournament dose not exist")
-      elsif tournament.ongoing_round
+      elsif tournament.ongoing_round_number
         error('cannot drop player when ongoing round exist')
       else
         @player_repo.update(id, droped_round: tournament.finished_count)

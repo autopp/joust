@@ -24,8 +24,14 @@ describe Interactors::DropPlayer do
 
   context 'when given parameters are valid' do
     let(:tournament) do
-      double('Tournament', id: 1, name: 'My Tournament', finished_count: 3, players: players)
+      double(
+        'Tournament',
+        id: 1, name: 'My Tournament', finished_count: 3,
+        ongoing_round_number: ongoing_round_number, players: players
+      )
     end
+
+    let(:ongoing_round_number) { nil }
     let(:players) { [player] }
     let(:player) { Player.new(id: 2, tournament_id: tournament_id, name: 'foo') }
     let(:tournament_id) { 1 }
@@ -41,7 +47,6 @@ describe Interactors::DropPlayer do
 
     context 'when ongoing round dose not exist' do
       before do
-        allow(tournament).to receive(:ongoing_round).and_return(nil)
         expect(player_repo).to receive(:update).with(2, droped_round: 3)
       end
 
@@ -53,10 +58,7 @@ describe Interactors::DropPlayer do
     end
 
     context 'when ongoing round exists' do
-      before do
-        round = Round.new(id: 4, tournament_id: 1, number: 4)
-        allow(tournament).to receive(:ongoing_round).and_return(round)
-      end
+      let(:ongoing_round_number) { 2 }
 
       it_behaves_like 'failure case'
     end
