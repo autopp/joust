@@ -113,25 +113,4 @@ RSpec.describe Tournament, players: 7 do
       end
     end
   end
-
-  describe '#ongoing_round' do
-    subject { tournament.ongoing_round }
-
-    let(:total_vp_used) { true }
-    let(:rank_history_used) { true }
-
-    context 'when #finished_count is less than count of rounds' do
-      let(:finished_count) { 1 }
-
-      it 'returns round 2' do
-        expect(subject).to eq(round2)
-      end
-    end
-
-    context 'when #finished_count equals count of rounds' do
-      let(:finished_count) { 2 }
-
-      it { is_expected.to be_nil }
-    end
-  end
 end
