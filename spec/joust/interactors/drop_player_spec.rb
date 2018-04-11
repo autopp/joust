@@ -62,6 +62,18 @@ describe Interactors::DropPlayer do
 
       it_behaves_like 'failure case'
     end
+
+    context 'when player dose not exist' do
+      let(:player) { nil }
+
+      it_behaves_like 'failure case'
+    end
+
+    context 'when player dose not relate to the tournament' do
+      let(:tournament_id) { 2 }
+
+      it_behaves_like 'failure case'
+    end
   end
 
   context 'when tournament_id is not given' do
