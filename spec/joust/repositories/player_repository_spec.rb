@@ -1,28 +1,6 @@
 RSpec.describe PlayerRepository, type: :repository do
   let(:repo) { PlayerRepository.new }
 
-  describe '#find_by_tournament_id', players: 7 do
-    subject { repo.find_by_tournament_id(1) }
-
-    let(:tournament) do
-      Tournament.new(
-        id: 1, name: 'My Tournament', finished_count: 0, players: players, rounds: rounds
-      )
-    end
-
-    before do
-      TournamentRepository.new.create(tournament.to_h)
-
-      players.each do |p|
-        repo.create(p.to_h)
-      end
-    end
-
-    it 'returns players' do
-      expect(subject).to eq(players)
-    end
-  end
-
   describe '#find_with_scores_by_tournament_id', players: 7 do
     subject { repo.find_with_scores_by_tournament_id(1) }
 

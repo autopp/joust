@@ -4,10 +4,6 @@ class PlayerRepository < Hanami::Repository
     has_many :scores
   end
 
-  def find_by_tournament_id(tournament_id)
-    players.where(tournament_id: tournament_id).to_a
-  end
-
   def find_with_scores_by_tournament_id(tournament_id)
     aggregate(:tournament, :scores).where(tournament_id: tournament_id).map_to(Player).to_a
   end
