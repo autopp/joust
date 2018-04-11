@@ -1,8 +1,8 @@
 describe Interactors::DropPlayer do
   let(:interactor) do
-    described_class.new(find_tournament: find_tournament, player_repo: player_repo)
+    described_class.new(tournament_repo: tournament_repo, player_repo: player_repo)
   end
-  let(:find_tournament) { instance_double(Interactors::FindTournament) }
+  let(:tournament_repo) { instance_double(TournamentRepository) }
   let(:player_repo) { instance_double(PlayerRepository) }
 
   subject { interactor.call(params) }
@@ -26,22 +26,16 @@ describe Interactors::DropPlayer do
     let(:tournament) do
       double(
         'Tournament',
-        id: 1, name: 'My Tournament', finished_count: 3,
-        ongoing_round_number: ongoing_round_number, players: players
+        id: 1, name: 'My Tournament', finished_count: 3, ongoing_round_number: ongoing_round_number
       )
     end
 
     let(:ongoing_round_number) { nil }
-    let(:players) { [player] }
     let(:player) { Player.new(id: 2, tournament_id: tournament_id, name: 'foo') }
     let(:tournament_id) { 1 }
-    let(:success) { true }
 
     before do
-      result = double('FindTournament result')
-      allow(result).to receive(:tournament).and_return(tournament)
-      allow(result).to receive(:success?).and_return(success)
-      allow(find_tournament).to receive(:call).with(id: 1).and_return(result)
+      allow(tournament_repo).to receive(:find).with(1).and_return(tournament)
       allow(player_repo).to receive(:find).with(2).and_return(player)
     end
 
@@ -58,20 +52,13 @@ describe Interactors::DropPlayer do
     end
 
     context 'when ongoing round exists' do
-      let(:ongoing_round_number) { 2 }
+      let(:ongoing_round_number) { 4 }
 
       it_behaves_like 'failure case'
     end
 
     context 'when tournament dose not exist' do
       let(:tournament) { nil }
-      let(:success) { false }
-
-      it_behaves_like 'failure case'
-    end
-
-    context 'when player is not related to the tournament' do
-      let(:players) { [] }
 
       it_behaves_like 'failure case'
     end

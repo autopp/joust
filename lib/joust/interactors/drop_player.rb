@@ -7,25 +7,26 @@ module Interactors
     expose :player
 
     def initialize(
-      find_tournament: Interactors::FindTournament.new, player_repo: PlayerRepository.new
+      tournament_repo: TournamentRepository.new, player_repo: PlayerRepository.new
     )
-      @find_tournament = find_tournament
+      @tournament_repo = tournament_repo
       @player_repo = player_repo
     end
 
     def call(params)
+      tournament_id = params[:tournament_id]
       id = params[:id]
-      r = @find_tournament.call(id: params[:tournament_id])
+      tournament = @tournament_repo.find(tournament_id)
 
-      unless r.success?
-        error("tournament #{params[:tournament_id]} dose not exist")
+      unless tournament
+        error("tournament #{tournament_id} dose not exist")
         return
       end
 
-      tournament = r.tournament
-      @player = tournament.players.find { |p| p.id == id }
+      # @player = tournament.players.find { |p| p.id == id }
+      @player = @player_repo.find(id)
 
-      if !@player
+      if !@player || @player.tournament_id != tournament_id
         error("player #{id} related to the tournament dose not exist")
       elsif tournament.ongoing_round_number
         error('cannot drop player when ongoing round exist')
