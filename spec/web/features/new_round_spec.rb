@@ -19,6 +19,7 @@ feature 'Create new round' do
   end
 
   scenario 'Visit a tournament page and create new round' do
+    pending
     visit Web.routes.path(:tournament, id: @id)
     click_on 'Start new round'
 
