@@ -6,20 +6,15 @@ module Interactors
 
     expose :round
 
-    def initialize(
-      tournament_repo: TournamentRepository.new, score_repo: ScoreRepository.new,
-      find_tournament: Interactors::FindTournament.new
-    )
+    def initialize(tournament_repo: TournamentRepository.new, score_repo: ScoreRepository.new)
       @tournament_repo = tournament_repo
       @score_repo = score_repo
-      @find_tournament = find_tournament
     end
 
     def call(params)
-      res = @find_tournament.call(id: params[:tournament_id])
-      error!(*res.errors) unless res.success?
+      tournament = @tournament_repo.find(params[:tournament_id])
+      error!("tournament #{params[:tournament_id]} dose not exist") unless tournament
 
-      tournament = res.tournament
       error!("'#{tournament.name}' has ongoing round") if tournament.ongoing_round_number
 
       @round = @tournament_repo.add_round(tournament)
