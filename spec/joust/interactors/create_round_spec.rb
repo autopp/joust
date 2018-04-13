@@ -1,11 +1,12 @@
 describe Interactors::CreateRound do
   let(:interactor) do
     described_class.new(
-      tournament_repo: tournament_repo, score_repo: score_repo
+      tournament_repo: tournament_repo, score_repo: score_repo, find_tournament: find_tournament
     )
   end
 
   let(:tournament_repo) { instance_double(TournamentRepository) }
+  let(:find_tournament) { instance_double(Interactors::FindTournament) }
   let(:score_repo) { instance_double(ScoreRepository) }
 
   subject { interactor.call(params) }
@@ -20,13 +21,17 @@ describe Interactors::CreateRound do
   context 'when params are valid' do
     let(:tournament_id) { '1' }
     let(:params) { { tournament_id: tournament_id } }
+    let(:find_result) { double('FindTournament result') }
 
     before do
-      allow(tournament_repo).to receive(:find).with(tournament_id).and_return(tournament)
+      allow(find_tournament).to receive(:call).with(id: tournament_id).and_return(find_result)
     end
 
     context 'when the tournament dose not exist' do
-      let(:tournament) { nil }
+      before do
+        allow(find_result).to receive(:success?).and_return(false)
+        allow(find_result).to receive(:errors).and_return(['error of FindTournament'])
+      end
 
       it_behaves_like 'failure case'
     end
@@ -108,6 +113,8 @@ describe Interactors::CreateRound do
       end
 
       before do
+        allow(find_result).to receive(:success?).and_return(true)
+        allow(find_result).to receive(:tournament).and_return(tournament)
         ranking = [
           { rank: 1, player: player1 }, { rank: 2, player: player5 },
           { rank: 3, player: player2 }, { rank: 4, player: player6 },
