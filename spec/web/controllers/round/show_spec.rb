@@ -1,9 +1,22 @@
 RSpec.describe Web::Controllers::Round::Show, type: :action do
-  let(:action) { described_class.new }
-  let(:params) { Hash[] }
+  let(:action) { described_class.new(tournament_repo: tournament_repo, round_repo: round_repo) }
+  let(:params) { { tournament_id: tournament_id.to_s, number: number.to_s } }
+  let(:tournament_id) { 1 }
+  let(:number) { 2 }
 
-  it 'is successful' do
-    response = action.call(params)
-    expect(response[0]).to eq 200
+  let(:tournament_repo) { instance_double(TournamentRepository) }
+  subject { action.call(params) }
+
+  context 'when parameters are valid' do
+    let(:tournament) { Tournament(id: tournament_id, ) }
+
+    it 'is successful' do
+      expect(subject[0]).to eq 200
+    end
+
+    it 'exposes tournament' do
+      subject
+      expect(action.exposures).to include(tournament: tournament)
+    end
   end
 end
