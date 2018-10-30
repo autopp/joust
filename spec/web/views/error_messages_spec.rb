@@ -4,10 +4,11 @@ RSpec.describe Web::Views::ErrorMessages do
   let(:exposures) { { errors: errors } }
   let(:template)  { Hanami::View::Template.new('apps/web/templates/tournament/index.html.erb') }
   let(:view) do
-    Class.new do
+    class Foo
       include Web::View
       include Web::Views::ErrorMessages
-    end.new(template, exposures)
+    end
+    Foo.new(template, exposures)
   end
 
   describe '#error_messages' do
