@@ -7,8 +7,7 @@ RSpec.describe Web::Controllers::Round::Create, type: :action do
   let(:result) { double('result') }
 
   before do
-    expected_args = satisfying { |o| o.to_h == params }
-    allow(create_round).to receive(:call).with(expected_args).and_return(result)
+    allow(create_round).to receive(:call).and_return(result)
   end
 
   let(:tournament) { Tournament.new(id: 1) }
