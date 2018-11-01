@@ -3,7 +3,8 @@ RSpec.describe Web::Controllers::Tournament::Create, type: :action do
   let(:interactor) { instance_double(Interactors::CreateTournament) }
   let(:name) { 'My Tournament' }
 
-  let(:params) do
+  let(:params) { orig_params.dup }
+  let(:orig_params) do
     { tournament: { name: name, players: players, total_vp_used: '0', rank_history_used: '1' } }
   end
 
@@ -21,7 +22,7 @@ RSpec.describe Web::Controllers::Tournament::Create, type: :action do
       allow(result).to receive(:success?).and_return(true)
       allow(result).to receive(:tournament).and_return(tournament)
 
-      expected_arg = satisfying { |o| o.to_h == params }
+      expected_arg = satisfying { |o| o.to_h == orig_params }
       allow(interactor).to receive(:call).with(expected_arg).and_return(result)
     end
 
@@ -46,7 +47,7 @@ RSpec.describe Web::Controllers::Tournament::Create, type: :action do
       allow(result).to receive(:success?).and_return(false)
       allow(result).to receive(:errors).and_return(errors)
 
-      expected_arg = satisfying { |o| o.to_h == params }
+      expected_arg = satisfying { |o| o.to_h == orig_params }
       allow(interactor).to receive(:call).with(expected_arg).and_return(result)
     end
 

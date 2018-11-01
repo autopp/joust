@@ -3,11 +3,13 @@ RSpec.describe Web::Controllers::Round::Create, type: :action do
   let(:create_round) { instance_double(Interactors::CreateRound) }
   let(:find_tournament) { instance_double(Interactors::FindTournament) }
 
-  let(:params) { { tournament_id: '1' } }
+  let(:params) { orig_params.dup }
+  let(:orig_params) { { tournament_id: '1' } }
   let(:result) { double('result') }
 
   before do
-    allow(create_round).to receive(:call).and_return(result)
+    expected_args = satisfying { |o| o.to_h == orig_params }
+    allow(create_round).to receive(:call).with(expected_args).and_return(result)
   end
 
   let(:tournament) { Tournament.new(id: 1) }
