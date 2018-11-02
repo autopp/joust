@@ -5,10 +5,11 @@ RSpec.describe Web::Controllers::Round::Show, type: :action do
   let(:number) { 2 }
 
   let(:tournament_repo) { instance_double(TournamentRepository) }
+  let(:round_repo) { instance_double(RoundRepository) }
   subject { action.call(params) }
 
   context 'when parameters are valid' do
-    let(:tournament) { Tournament(id: tournament_id, ) }
+    let(:tournament) { Tournament.new(id: tournament_id) }
 
     it 'is successful' do
       expect(subject[0]).to eq 200
