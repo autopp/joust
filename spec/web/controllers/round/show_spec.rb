@@ -12,7 +12,7 @@ RSpec.describe Web::Controllers::Round::Show, type: :action do
     let(:tournament) { Tournament.new(id: tournament_id) }
 
     it 'is successful' do
-      expect(subject[0]).to eq 200
+      expect(subject[0]).to eq(200)
     end
 
     it 'exposes tournament' do

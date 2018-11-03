@@ -25,7 +25,7 @@ RSpec.describe Web::Controllers::Player::Update, type: :action do
     end
 
     it 'is successful' do
-      expect(subject[0]).to eq 200
+      expect(subject[0]).to eq(200)
     end
 
     it 'exposes no error' do

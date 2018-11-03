@@ -20,7 +20,7 @@ RSpec.describe Web::Controllers::Tournament::Show, players: 7 do
 
     it 'is successful' do
       response = action.call(params)
-      expect(response[0]).to eq 200
+      expect(response[0]).to eq(200)
     end
 
     it 'exposes tournament' do
