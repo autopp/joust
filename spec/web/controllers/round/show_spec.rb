@@ -11,6 +11,10 @@ RSpec.describe Web::Controllers::Round::Show, type: :action do
   context 'when parameters are valid' do
     let(:tournament) { Tournament.new(id: tournament_id) }
 
+    before do
+      allow(tournament_repo).to receive(:find).with(tournament_id.to_s).and_return(tournament)
+    end
+
     it 'is successful' do
       expect(subject[0]).to eq(200)
     end
