@@ -3,4 +3,7 @@ class ScoreRepository < Hanami::Repository
     belongs_to :player
     belongs_to :round
   end
+
+  def find_by_round_id(id)
+  end
 end
