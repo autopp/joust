@@ -5,5 +5,6 @@ class ScoreRepository < Hanami::Repository
   end
 
   def find_by_round_id(id)
+    scores.where(round_id: id).to_a
   end
 end

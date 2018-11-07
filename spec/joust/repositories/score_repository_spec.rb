@@ -26,7 +26,10 @@ RSpec.describe ScoreRepository, type: :repository do
     end
 
     it 'returns scores' do
-      expect(subject).to eq(scores_of_round1)
+      expected = scores_of_round1.map do |score|
+        a_hash_including(id: a_value, created_at: a_value, updated_at: a_value, **score.to_h)
+      end
+      expect(subject.map(&:to_h)).to match(expected)
     end
   end
 end
