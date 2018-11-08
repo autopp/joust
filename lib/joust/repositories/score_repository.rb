@@ -4,7 +4,7 @@ class ScoreRepository < Hanami::Repository
     belongs_to :round
   end
 
-  def find_by_round_id(id)
-    scores.where(round_id: id).to_a
+  def find_with_player_by_round_id(id)
+    aggregate(:player).where(round_id: id).map_to(Score).to_a
   end
 end

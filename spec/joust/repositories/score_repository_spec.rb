@@ -1,8 +1,8 @@
 RSpec.describe ScoreRepository, type: :repository do
   let(:repo) { described_class.new }
 
-  describe '#find_by_round_id', players: 7 do
-    subject { repo.find_by_round_id(1) }
+  describe '#find_with_player_by_round_id', players: 7 do
+    subject { repo.find_with_player_by_round_id(1) }
 
     let(:tournament) do
       Tournament.new(
@@ -30,6 +30,15 @@ RSpec.describe ScoreRepository, type: :repository do
         a_hash_including(id: a_value, created_at: a_value, updated_at: a_value, **score.to_h)
       end
       expect(subject.map(&:to_h)).to match(expected)
+    end
+
+    it 'returns with players' do
+      expected = players.map do |player|
+        player_hash = player.to_h
+        player_hash.delete(:scores)
+        a_hash_including(id: a_value, created_at: a_value, updated_at: a_value, **player_hash)
+      end
+      expect(subject.map { |score| score.player.to_h }).to match(expected)
     end
   end
 end
