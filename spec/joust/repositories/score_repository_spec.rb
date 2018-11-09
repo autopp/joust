@@ -2,14 +2,15 @@ RSpec.describe ScoreRepository, type: :repository do
   let(:repo) { described_class.new }
 
   describe '#find_with_player_by_round_id', players: 7 do
-    subject { repo.find_with_player_by_round_id(1) }
+    subject { repo.find_with_player_by_round_id(round_id) }
+    let(:round_id) { 1 }
 
     let(:tournament) do
       Tournament.new(
         id: 1, name: 'My Tournament', finished_count: 0, players: players, rounds: rounds
       )
     end
-    let(:scores_of_round1) { players.map { |p| p.scores.find { |s| s.round_id == 1 } } }
+    let(:scores_of_round1) { players.map { |p| p.scores.find { |s| s.round_id == round_id } } }
 
     before do
       TournamentRepository.new.create(tournament.to_h)
