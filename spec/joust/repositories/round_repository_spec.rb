@@ -2,13 +2,15 @@ RSpec.describe RoundRepository, type: :repository do
   let(:repo) { described_class.new }
 
   describe '#find_with_scores_by_tournament_id', players: 7 do
-    subject { repo.find_with_scores_by_tournament_id(1) }
+    subject { repo.find_with_scores_by_tournament_id(tournament_id) }
 
     let(:tournament) do
       Tournament.new(
-        id: 1, name: 'My Tournament', finished_count: 0, players: players, rounds: rounds
+        id: tournament_id, name: 'My Tournament', finished_count: 0,
+        players: players, rounds: rounds
       )
     end
+    let(:tournament_id) { 1 }
 
     before do
       TournamentRepository.new.create(tournament.to_h)
